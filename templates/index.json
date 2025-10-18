@@ -227,7 +227,7 @@
           "type": "expert",
           "settings": {
             "photo": "shopify://shop_images/dr-laura-stein.jpg",
-            "alt_text": "",
+            "alt_text": "dr-laura-stein-ernaehrungswissenschaftlerin.jpg",
             "name": "Dr. Laura Stein",
             "role": "Ernährungswissenschaftlerin (M.Sc.)",
             "bio": "<p>Dr. Laura Stein forscht seit über 10 Jahren im Bereich pflanzlicher Bitterstoffe. Sie kombiniert wissenschaftliches Wissen mit praxisnahen Ernährungstipps für einen gesunden Lebensstil.</p>",
@@ -239,7 +239,7 @@
         "expert_EVctnF": {
           "type": "expert",
           "settings": {
-            "alt_text": "",
+            "alt_text": "markus-feldmann-produktentwickler.jpg",
             "name": "Markus Feldmann",
             "role": "Produktentwickler & Qualitätsmanager",
             "bio": "<p>Markus ist verantwortlich für die Entwicklung und Qualitätssicherung unserer Produkte. Sein Fokus liegt auf natürlichen Inhaltsstoffen und nachhaltigen Produktionsprozessen.</p>",
@@ -251,7 +251,7 @@
         "expert_KkJD6c": {
           "type": "expert",
           "settings": {
-            "alt_text": "",
+            "alt_text": "anna-keller-heilpraktikerin.jpg",
             "name": "Anna Keller",
             "role": "Heilpraktikerin & Ernährungsexpertin",
             "bio": "<p>Anna begleitet Kund:innen auf dem Weg zu einer bewussteren Ernährung. Sie kombiniert traditionelles Wissen über Heilpflanzen mit modernen Ernährungskonzepten.</p>",
@@ -263,10 +263,23 @@
         "expert_GhgUm4": {
           "type": "expert",
           "settings": {
-            "alt_text": "",
+            "photo": "shopify://shop_images/Tobias-Berger.jpg",
+            "alt_text": "tobias-berger-gesundheitscoach.jpg",
             "name": "Tobias Berger",
             "role": "Coach für ganzheitliche Gesundheit",
             "bio": "<p>Tobias unterstützt mit individuellen Coachings und Workshops, um Körper und Geist in Einklang zu bringen. Sein Credo: „Gesundheit beginnt im Kopf – und mit der richtigen Ernährung.“</p>",
+            "link_label": "Mehr erfahren",
+            "link_url": "",
+            "link_new_tab": false
+          }
+        },
+        "expert_LpCQni": {
+          "type": "expert",
+          "settings": {
+            "alt_text": "",
+            "name": "",
+            "role": "",
+            "bio": "",
             "link_label": "Mehr erfahren",
             "link_url": "",
             "link_new_tab": false
@@ -290,6 +303,7 @@
         "expert_EVctnF",
         "expert_KkJD6c",
         "expert_GhgUm4",
+        "expert_LpCQni",
         "expert_rFViy8"
       ],
       "name": "Unser Expertenteam",
