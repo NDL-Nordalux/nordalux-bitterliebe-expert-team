@@ -15,12 +15,14 @@
       {% for block in section.blocks %}
         {% if block.type == 'expert' %}
           <article class="expert-card" {{ block.shopify_attributes }}>
-           {% if block.settings.photo != blank %}
-  {% assign alt_txt = block.settings.alt_text | default: block.settings.name %}
-  {{ block.settings.photo
-    | image_url: width: 900
-    | image_tag: alt: alt_txt, loading: 'lazy', sizes: '(min-width:1200px) 22vw, (min-width:750px) 30vw, 90vw' }}
-{% endif %}
+            {% if block.settings.photo != blank %}
+              <div class="expert-card__media">
+                {% assign alt_txt = block.settings.alt_text | default: block.settings.name %}
+                {{ block.settings.photo
+                  | image_url: width: 1200
+                  | image_tag: alt: alt_txt, loading: 'lazy', sizes: '(min-width:1200px) 22vw, (min-width:750px) 30vw, 90vw' }}
+              </div>
+            {% endif %}
 
             <div class="expert-card__body">
               {% if block.settings.name != blank %}
@@ -33,7 +35,8 @@
                 <div class="expert-card__text">{{ block.settings.bio }}</div>
               {% endif %}
               {% if block.settings.link_url != blank %}
-                <a class="expert-card__link" href="{{ block.settings.link_url }}" {% if block.settings.link_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                <a class="expert-card__link" href="{{ block.settings.link_url }}"
+                   {% if block.settings.link_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
                   {{ block.settings.link_label | default: 'Mehr erfahren' }}
                 </a>
               {% endif %}
@@ -53,15 +56,22 @@
     .expert-team__title{ margin:0 0 .4rem; line-height:1.2; }
     .expert-team__intro{ margin:0 0 1.2rem; color:#333; opacity:.95; }
 
-    .experts-grid{ display:grid; gap: 22px; }
+    .experts-grid{ display:grid; gap:22px; }
     .experts-grid.grid--cols-2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
     .experts-grid.grid--cols-3{ grid-template-columns: repeat(3, minmax(0,1fr)); }
     .experts-grid.grid--cols-4{ grid-template-columns: repeat(4, minmax(0,1fr)); }
-    @media(max-width:1199px){ .experts-grid{ grid-template-columns: repeat(2,minmax(0,1fr)); } }
+    @media(max-width:1199px){ .experts-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
     @media(max-width:749px){ .experts-grid{ grid-template-columns: 1fr; } }
 
-    .expert-card{ background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; height:100%; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
-    .expert-card__media img{ width:100%; height:auto; display:block; aspect-ratio: 4 / 3; object-fit: cover; }
+    .expert-card{
+      background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:12px;
+      overflow:hidden; display:flex; flex-direction:column; height:100%;
+      box-shadow:0 1px 2px rgba(0,0,0,.04);
+    }
+    /* نسبت تصویر روی WRAPPER تا عکس‌های عمودی/افقی درست کراپ شوند */
+    .expert-card__media{ width:100%; aspect-ratio: 4 / 3; overflow:hidden; background:#f6f6f6; }
+    .expert-card__media img{ width:100%; height:100%; object-fit:cover; display:block; }
+
     .expert-card__body{ padding:16px 16px 14px; display:flex; flex-direction:column; gap:6px; }
     .expert-card__name{ margin:0; font-size:1.05rem; font-weight:600; }
     .expert-card__role{ margin:0; color:#666; font-size:.95rem; }
@@ -90,7 +100,7 @@
       "name": "Expertenkarte",
       "settings": [
         { "type": "image_picker", "id": "photo", "label": "Foto" },
-        { "type": "text", "id": "alt_text", "label": "Alt-Text (SEO)"},
+        { "type": "text", "id": "alt_text", "label": "Alt-Text (SEO)" },
         { "type": "text", "id": "name", "label": "Name" },
         { "type": "text", "id": "role", "label": "Rolle" },
         { "type": "richtext", "id": "bio", "label": "Kurzbeschreibung" },
@@ -114,4 +124,3 @@
   ]
 }
 {% endschema %}
-
