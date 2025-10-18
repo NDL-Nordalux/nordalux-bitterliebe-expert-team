@@ -1,0 +1,57 @@
+/* section-expert-team.css */
+/* Responsive styles for Expert Team section */
+
+.expert-team {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.expert-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  flex: 1 1 100%;
+  max-width: 90%;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.expert-card img {
+  width: 100%;
+  height: auto;
+  border-bottom: 2px solid #f2f2f2;
+}
+
+.expert-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.expert-card h3 {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
+.expert-card p {
+  padding: 0 1rem;
+  color: #555;
+}
+
+@media (min-width: 768px) {
+  .expert-card {
+    flex: 1 1 calc(50% - 1.5rem);
+    max-width: calc(50% - 1.5rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .expert-card {
+    flex: 1 1 calc(25% - 1.5rem);
+    max-width: calc(25% - 1.5rem);
+  }
+}
