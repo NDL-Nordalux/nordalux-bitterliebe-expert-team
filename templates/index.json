@@ -227,19 +227,67 @@
           "type": "expert",
           "settings": {
             "photo": "shopify://shop_images/dr-laura-stein.jpg",
+            "alt_text": "",
             "name": "Dr. Laura Stein",
             "role": "Ernährungswissenschaftlerin (M.Sc.)",
-            "bio": "<p>Dr. Laura Stein forscht seit über 10 Jahren im Bereich pflanzlicher Bitterstoffe. Sie kombiniert wissenschaftliches Wissen mit praxisnahen Ernährungstipps für einen gesunden Lebensstil.</p>"
+            "bio": "<p>Dr. Laura Stein forscht seit über 10 Jahren im Bereich pflanzlicher Bitterstoffe. Sie kombiniert wissenschaftliches Wissen mit praxisnahen Ernährungstipps für einen gesunden Lebensstil.</p>",
+            "link_label": "Mehr erfahren",
+            "link_url": "",
+            "link_new_tab": false
+          }
+        },
+        "expert_EVctnF": {
+          "type": "expert",
+          "settings": {
+            "alt_text": "",
+            "name": "Markus Feldmann",
+            "role": "Produktentwickler & Qualitätsmanager",
+            "bio": "<p>Markus ist verantwortlich für die Entwicklung und Qualitätssicherung unserer Produkte. Sein Fokus liegt auf natürlichen Inhaltsstoffen und nachhaltigen Produktionsprozessen.</p>",
+            "link_label": "Mehr erfahren",
+            "link_url": "",
+            "link_new_tab": false
+          }
+        },
+        "expert_KkJD6c": {
+          "type": "expert",
+          "settings": {
+            "alt_text": "",
+            "name": "",
+            "role": "",
+            "bio": "",
+            "link_label": "Mehr erfahren",
+            "link_url": "",
+            "link_new_tab": false
+          }
+        },
+        "expert_rFViy8": {
+          "type": "expert",
+          "settings": {
+            "alt_text": "",
+            "name": "",
+            "role": "",
+            "bio": "",
+            "link_label": "Mehr erfahren",
+            "link_url": "",
+            "link_new_tab": false
           }
         }
       },
       "block_order": [
-        "expert_KR4dTW"
+        "expert_KR4dTW",
+        "expert_EVctnF",
+        "expert_KkJD6c",
+        "expert_rFViy8"
       ],
       "name": "Unser Expertenteam",
       "settings": {
-        "section_heading": "Unser Expertenteam",
-        "section_description": "<p>Unser Team aus Expertinnen und Experten teilt Leidenschaft und Wissen für Bitterstoffe.</p>"
+        "badge": "BitterLiebe knows best",
+        "heading": "Unser Experten-Team",
+        "intro": "<p>Hinter BitterLiebe steckt ein Team von renommierten Experten aus den Bereichen Ernährung, Gesundheit und Naturheilkunde, die ihr Fachwissen und ihre Leidenschaft für Bitterstoffe bündeln.</p>",
+        "columns_desktop": 4,
+        "bg": "#f7f7f7",
+        "pad_y_mobile": 40,
+        "pad_y_desktop": 64
       }
     }
   },
