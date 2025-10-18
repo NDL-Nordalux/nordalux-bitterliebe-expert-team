@@ -42,6 +42,21 @@
   color: #555;
 }
 
+.expert-link {
+  display: inline-block;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  background-color: #007ace;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.expert-link:hover {
+  background-color: #005fa3;
+}
+
 @media (min-width: 768px) {
   .expert-card {
     flex: 1 1 calc(50% - 1.5rem);
