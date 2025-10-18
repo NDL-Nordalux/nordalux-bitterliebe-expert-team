@@ -34,7 +34,8 @@
               {% if block.settings.bio != blank %}
                 <div class="expert-card__text">{{ block.settings.bio }}</div>
               {% endif %}
-              {% if block.settings.link_url != blank %}
+
+              {% if section.settings.show_card_link and block.settings.link_url != blank %}
                 <a class="expert-card__link" href="{{ block.settings.link_url }}"
                    {% if block.settings.link_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
                   {{ block.settings.link_label | default: 'Mehr erfahren' }}
@@ -45,17 +46,26 @@
         {% endif %}
       {% endfor %}
     </div>
+
+    {% if section.settings.footer_link_url != blank and section.settings.footer_link_label != blank %}
+      <div class="experts-footer-link">
+        <a class="experts-footer-link__btn" href="{{ section.settings.footer_link_url }}">
+          {{ section.settings.footer_link_label }}
+        </a>
+      </div>
+    {% endif %}
   </div>
 
   <style>
+    /* Section spacing & header */
     #expert-team{ background: var(--et-bg); padding: {{ section.settings.pad_y_mobile }}px 0; }
     @media(min-width:750px){ #expert-team{ padding: {{ section.settings.pad_y_desktop }}px 0; } }
-
     .expert-team__inner{ max-width: var(--page-width, 1200px); margin-inline:auto; }
-    .expert-team__badge{ text-transform: uppercase; letter-spacing:.08em; font-size:.8rem; opacity:.7; margin:0 0 .25rem; }
-    .expert-team__title{ margin:0 0 .4rem; line-height:1.2; }
-    .expert-team__intro{ margin:0 0 1.2rem; color:#333; opacity:.95; }
+    .expert-team__badge{ text-transform: uppercase; letter-spacing:.08em; font-size:.8rem; opacity:.7; margin:0 0 .4rem; }
+    .expert-team__title{ margin:0 0 .6rem; line-height:1.2; }
+    .expert-team__intro{ margin:0 0 1.6rem; color:#333; opacity:.95; }
 
+    /* Grid */
     .experts-grid{ display:grid; gap:22px; }
     .experts-grid.grid--cols-2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
     .experts-grid.grid--cols-3{ grid-template-columns: repeat(3, minmax(0,1fr)); }
@@ -63,20 +73,33 @@
     @media(max-width:1199px){ .experts-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
     @media(max-width:749px){ .experts-grid{ grid-template-columns: 1fr; } }
 
+    /* Card */
     .expert-card{
       background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:12px;
       overflow:hidden; display:flex; flex-direction:column; height:100%;
       box-shadow:0 1px 2px rgba(0,0,0,.04);
     }
-    /* نسبت تصویر روی WRAPPER تا عکس‌های عمودی/افقی درست کراپ شوند */
+
+    /* Image ratio on wrapper for consistent crop */
     .expert-card__media{ width:100%; aspect-ratio: 4 / 3; overflow:hidden; background:#f6f6f6; }
     .expert-card__media img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-    .expert-card__body{ padding:16px 16px 14px; display:flex; flex-direction:column; gap:6px; }
-    .expert-card__name{ margin:0; font-size:1.05rem; font-weight:600; }
-    .expert-card__role{ margin:0; color:#666; font-size:.95rem; }
-    .expert-card__text{ color:#555; font-size:.95rem; line-height:1.5; }
-    .expert-card__link{ margin-top:auto; display:inline-block; text-decoration:underline; font-weight:600; font-size:.95rem; }
+    .expert-card__body{ padding:18px 16px 16px; display:flex; flex-direction:column; gap:6px; }
+    .expert-card__name{ margin:0; font-size:1.06rem; font-weight:600; }
+    .expert-card__role{ margin:0; color:#5c5c5c; font-size:.95rem; font-weight:500; }
+    .expert-card__text{ color:#555; font-size:.95rem; line-height:1.5; min-height: 90px; } /* یکنواختی ارتفاع متن */
+
+    .expert-card__link{
+      margin-top:auto; display:inline-block; text-decoration:underline;
+      font-weight:600; font-size:.95rem;
+    }
+
+    /* Footer CTA */
+    .experts-footer-link{ text-align:center; margin-top: 28px; }
+    .experts-footer-link__btn{
+      display:inline-block; padding:10px 18px; border:1px solid #1c1c1c; border-radius:8px;
+      text-decoration:none; font-weight:600;
+    }
   </style>
 </section>
 
@@ -91,8 +114,13 @@
     { "type": "richtext", "id": "intro", "label": "Intro", "default": "<p>Hinter BitterLiebe steckt ein Team von renommierten Experten aus den Bereichen Ernährung, Gesundheit und Naturheilkunde, die ihr Fachwissen und ihre Leidenschaft für Bitterstoffe bündeln.</p>" },
     { "type": "range", "id": "columns_desktop", "label": "Spalten (Desktop)", "min": 2, "max": 4, "step": 1, "default": 4 },
     { "type": "color", "id": "bg", "label": "Hintergrundfarbe", "default": "#F7F7F7" },
-    { "type": "range", "id": "pad_y_mobile", "label": "Abstand oben/unten (Mobil)", "min": 20, "max": 80, "step": 2, "default": 40 },
-    { "type": "range", "id": "pad_y_desktop", "label": "Abstand oben/unten (Desktop)", "min": 30, "max": 120, "step": 2, "default": 64 }
+    { "type": "range", "id": "pad_y_mobile", "label": "Abstand oben/unten (Mobil)", "min": 20, "max": 120, "step": 2, "default": 40 },
+    { "type": "range", "id": "pad_y_desktop", "label": "Abstand oben/unten (Desktop)", "min": 30, "max": 160, "step": 2, "default": 80 },
+
+      { "type": "checkbox", "id": "show_card_link", "label": "„Mehr erfahren“ in Karten zeigen", "default": true },
+    { "type": "text", "id": "footer_link_label", "label": "Footer-Button Text", "default": "Mehr über unser Team erfahren" },
+    { "type": "url", "id": "footer_link_url", "label": "Footer-Button Link" }
+
   ],
   "blocks": [
     {
@@ -103,10 +131,11 @@
         { "type": "text", "id": "alt_text", "label": "Alt-Text (SEO)" },
         { "type": "text", "id": "name", "label": "Name" },
         { "type": "text", "id": "role", "label": "Rolle" },
-        { "type": "richtext", "id": "bio", "label": "Kurzbeschreibung" },
-        { "type": "text", "id": "link_label", "label": "Link-Label", "default": "Mehr erfahren" },
-        { "type": "url", "id": "link_url", "label": "Link URL" },
-        { "type": "checkbox", "id": "link_new_tab", "label": "In neuem Tab öffnen", "default": false }
+        { "type": "richtext", "id": "bio", "label": "Kurzbeschreibung" }, 
+           { "type": "checkbox", "id": "show_card_link", "label": "„Mehr erfahren“ in Karten zeigen", "default": true },
+    { "type": "text", "id": "footer_link_label", "label": "Footer-Button Text", "default": "Mehr über unser Team erfahren" },
+    { "type": "url", "id": "footer_link_url", "label": "Footer-Button Link" }
+
       ]
     }
   ],
