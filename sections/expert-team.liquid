@@ -1,107 +1,180 @@
-{% comment %}
-  Expert Team Section – erstellt von Payam Abdolmohammadi
-  Beschreibung: Zeigt ein flexibles Raster von Expert:innen-Karten mit Namen, Rolle, Beschreibung und Bild.
-{% endcomment %}
+<section id="expert-team"
+         class="expert-team"
+         style="--et-bg: {{ section.settings.bg | default: '#F7F7F7' }}; --cols-d: {{ section.settings.columns_desktop | default: 4 }}; --cols-t: {{ section.settings.columns_tablet | default: 2 }}; --cols-m: {{ section.settings.columns_mobile | default: 1 }};">
+  <div class="expert-team__inner page-width">
+    {% if section.settings.badge != blank %}
+      <p class="expert-team__badge">{{ section.settings.badge }}</p>
+    {% endif %}
+    {% if section.settings.heading != blank %}
+      <h2 class="expert-team__title">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.intro != blank %}
+      <div class="expert-team__intro rte">{{ section.settings.intro }}</div>
+    {% endif %}
 
-{{ 'section-expert-team.css' | asset_url | stylesheet_tag }}
-
-<section class="expert-team-section">
-  <div class="page-width">
-    <div class="section-header">
-      {% if section.settings.heading != blank %}
-        <h2 class="section-title">{{ section.settings.heading }}</h2>
-      {% endif %}
-      {% if section.settings.subheading != blank %}
-        <p class="section-subheading">{{ section.settings.subheading }}</p>
-      {% endif %}
-    </div>
-
-    <div class="expert-team">
+    <div class="experts-grid">
       {% for block in section.blocks %}
-        <div class="expert-card">
-          {% if block.settings.image != blank %}
-            {{ block.settings.image | image_url: width: 800 | image_tag: alt: block.settings.name, loading: 'lazy' }}
-          {% endif %}
+        {% if block.type == 'expert' %}
+          <article class="expert-card" {{ block.shopify_attributes }}>
+            {% if block.settings.photo != blank %}
+              <div class="expert-card__media">
+                {% assign alt_txt = block.settings.alt_text | default: block.settings.name %}
+                {{ block.settings.photo
+                  | image_url: width: 1200
+                  | image_tag:
+                    alt: alt_txt,
+                    loading: 'lazy',
+                    sizes: '(min-width:1200px) calc((min(1200px, 100vw) - 66px) / var(--cols-d)), (min-width:750px) calc((100vw - 44px) / var(--cols-t)), calc(100vw - 32px)',
+                    widths: '360, 540, 720, 900, 1080, 1200' }}
+              </div>
+            {% endif %}
 
-          <h3>{{ block.settings.name }}</h3>
-          <p><strong>{{ block.settings.role }}</strong></p>
-          <p>{{ block.settings.description }}</p>
+            <div class="expert-card__body">
+              {% if block.settings.name != blank %}
+                <h3 class="expert-card__name">{{ block.settings.name }}</h3>
+              {% endif %}
+              {% if block.settings.role != blank %}
+                <p class="expert-card__role">{{ block.settings.role }}</p>
+              {% endif %}
+              {% if block.settings.bio != blank %}
+                <div class="expert-card__text">{{ block.settings.bio }}</div>
+              {% endif %}
 
-          {% if block.settings.link_label != blank and block.settings.link_url != blank %}
-            <a href="{{ block.settings.link_url }}" class="expert-link">
-              {{ block.settings.link_label }}
-            </a>
-          {% endif %}
-        </div>
+              {% if section.settings.show_card_link and block.settings.link_url != blank %}
+                <a class="expert-card__link" href="{{ block.settings.link_url }}"
+                   {% if block.settings.link_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                  {{ block.settings.link_label | default: 'Mehr erfahren' }}
+                </a>
+              {% endif %}
+            </div>
+          </article>
+        {% endif %}
       {% endfor %}
     </div>
+
+    {% if section.settings.footer_link_url != blank and section.settings.footer_link_label != blank %}
+      <div class="experts-footer-link">
+        <a class="experts-footer-link__btn" href="{{ section.settings.footer_link_url }}">
+          {{ section.settings.footer_link_label }}
+        </a>
+      </div>
+    {% endif %}
   </div>
+
+  <style>
+    #expert-team{
+      background: var(--et-bg);
+      padding: {{ section.settings.pad_y_mobile }}px 0;
+    }
+    @media (min-width:750px){
+      #expert-team{ padding: {{ section.settings.pad_y_desktop }}px 0; }
+    }
+    .expert-team__inner{ max-width: var(--page-width, 1200px); margin-inline:auto; }
+
+    .expert-team__badge{
+      text-transform: uppercase; letter-spacing:.08em;
+      font-size:.8rem; opacity:.7; margin:0 0 .4rem;
+    }
+    .expert-team__title{
+      margin:0 0 .6rem; line-height:1.2;
+      font-size: clamp(1.25rem, 2.4vw, 2rem);
+    }
+    .expert-team__intro{ margin:0 0 1.6rem; color:#333; opacity:.95; }
+
+    .experts-grid{
+      display:grid; gap:22px;
+      grid-template-columns: repeat(var(--cols-d), minmax(0,1fr));
+    }
+    @media (max-width:1199px){
+      .experts-grid{ grid-template-columns: repeat(var(--cols-t), minmax(0,1fr)); }
+    }
+    @media (max-width:749px){
+      .experts-grid{ grid-template-columns: repeat(var(--cols-m), minmax(0,1fr)); padding-inline: 16px; }
+    }
+
+    .expert-card{
+      background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:12px;
+      overflow:hidden; display:flex; flex-direction:column; height:100%;
+      box-shadow:0 1px 2px rgba(0,0,0,.04);
+      transition: box-shadow .25s ease, transform .25s ease;
+    }
+    .expert-card:hover{ transform: translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,.08); }
+
+    .expert-card__media{ width:100%; aspect-ratio: 4 / 3; overflow:hidden; background:#f6f6f6; }
+    .expert-card__media img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    .expert-card__body{ padding:18px 16px 16px; display:flex; flex-direction:column; gap:6px; }
+    .expert-card__name{ margin:0; font-size:1.05rem; font-weight:700; line-height:1.25; }
+    .expert-card__role{ margin:0; color:#5c5c5c; font-size:.95rem; font-weight:600; }
+    .expert-card__text{ color:#555; font-size:.95rem; line-height:1.55; }
+
+    .expert-card__link{
+      margin-top:auto; display:inline-block; text-decoration:underline; font-weight:700; font-size:.95rem;
+      padding-top: 6px;
+    }
+
+    .experts-footer-link{ text-align:center; margin-top: 28px; }
+    .experts-footer-link__btn{
+      display:inline-block; padding:10px 18px; border:1px solid #1c1c1c; border-radius:8px;
+      text-decoration:none; font-weight:700;
+    }
+  </style>
 </section>
 
 {% schema %}
 {
-  "name": "Unser Expertenteam",
+  "name": "Unser Experten-Team",
+  "tag": "section",
+  "class": "section--expert-team",
   "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Titel",
-      "default": "Unser Experten-Team"
+    { "type": "text", "id": "badge", "label": "Eyebrow/Badge", "default": "BitterLiebe knows best" },
+    { "type": "text", "id": "heading", "label": "Überschrift", "default": "Unser Experten-Team" },
+    { "type": "richtext", "id": "intro", "label": "Intro", "default": "<p>Hinter BitterLiebe steckt ein Team von renommierten Experten aus den Bereichen Ernährung, Gesundheit und Naturheilkunde, die ihr Fachwissen und ihre Leidenschaft für Bitterstoffe bündeln.</p>" },
+
+    { "type": "range", "id": "columns_desktop", "label": "Spalten (Desktop)", "min": 1, "max": 6, "step": 1, "default": 4 },
+    { "type": "range", "id": "columns_tablet",  "label": "Spalten (Tablet ≤ 1199px)", "min": 1, "max": 4, "step": 1, "default": 2 },
+
+    { "type": "select", "id": "columns_mobile", "label": "Spalten (Mobil ≤ 749px)", "default": "1",
+      "options": [
+        { "value": "1", "label": "1 Spalte" },
+        { "value": "2", "label": "2 Spalten" }
+      ]
     },
-    {
-      "type": "text",
-      "id": "subheading",
-      "label": "Untertitel",
-      "default": "Lerne unser engagiertes Team aus Ernährungs- und Gesundheitsexperten kennen."
-    }
+
+    { "type": "color", "id": "bg", "label": "Hintergrundfarbe", "default": "#F7F7F7" },
+    { "type": "range", "id": "pad_y_mobile", "label": "Abstand oben/unten (Mobil)", "min": 20, "max": 120, "step": 2, "default": 40 },
+    { "type": "range", "id": "pad_y_desktop", "label": "Abstand oben/unten (Desktop)", "min": 30, "max": 160, "step": 2, "default": 80 },
+
+    { "type": "checkbox", "id": "show_card_link", "label": "„Mehr erfahren“ in Karten zeigen", "default": true },
+    { "type": "text", "id": "footer_link_label", "label": "Footer-Button Text", "default": "Mehr über unser Team erfahren" },
+    { "type": "url", "id": "footer_link_url", "label": "Footer-Button Link" }
   ],
   "blocks": [
     {
       "type": "expert",
       "name": "Expertenkarte",
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Bild"
-        },
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Name",
-          "default": "Vorname Nachname"
-        },
-        {
-          "type": "text",
-          "id": "role",
-          "label": "Position",
-          "default": "Ernährungsberater:in"
-        },
-        {
-          "type": "textarea",
-          "id": "description",
-          "label": "Beschreibung",
-          "default": "Kurzbeschreibung des Experten oder der Expertin."
-        },
-        {
-          "type": "text",
-          "id": "link_label",
-          "label": "Link-Text",
-          "default": "Mehr erfahren"
-        },
-        {
-          "type": "url",
-          "id": "link_url",
-          "label": "Link-URL"
-        }
+        { "type": "image_picker", "id": "photo", "label": "Foto" },
+        { "type": "text", "id": "alt_text", "label": "Alt-Text (SEO)" },
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "text", "id": "role", "label": "Rolle" },
+        { "type": "richtext", "id": "bio", "label": "Kurzbeschreibung" },
+        { "type": "text", "id": "link_label", "label": "Link-Label", "default": "Mehr erfahren" },
+        { "type": "url", "id": "link_url", "label": "Link URL" },
+        { "type": "checkbox", "id": "link_new_tab", "label": "In neuem Tab öffnen", "default": false }
       ]
     }
   ],
-  "max_blocks": 8,
+  "max_blocks": 12,
   "presets": [
     {
-      "name": "Unser Expertenteam",
-      "category": "Abschnitte"
+      "name": "Unser Experten-Team",
+      "blocks": [
+        { "type": "expert", "settings": { "name": "Jana Lebenstedt", "role": "Studierte Ernährungsexpertin (B.SC.)" } },
+        { "type": "expert", "settings": { "name": "Lisa Marie Thiele", "role": "Physiotherapeutin & Ernährungsberaterin" } },
+        { "type": "expert", "settings": { "name": "Laura Lutz", "role": "Zertifizierte Ernährungsberaterin" } },
+        { "type": "expert", "settings": { "name": "Filomena Barth", "role": "Beraterin für Nahrungsergänzungsmittel" } }
+      ]
     }
   ]
 }
