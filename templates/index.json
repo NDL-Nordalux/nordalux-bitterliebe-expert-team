@@ -274,39 +274,13 @@
             "link_url": "shopify://pages/tobias-muller",
             "link_new_tab": false
           }
-        },
-        "expert_LpCQni": {
-          "type": "expert",
-          "settings": {
-            "alt_text": "",
-            "name": "",
-            "role": "",
-            "bio": "",
-            "link_label": "Mehr erfahren",
-            "link_url": "",
-            "link_new_tab": false
-          }
-        },
-        "expert_rFViy8": {
-          "type": "expert",
-          "settings": {
-            "alt_text": "",
-            "name": "",
-            "role": "",
-            "bio": "",
-            "link_label": "Mehr erfahren",
-            "link_url": "",
-            "link_new_tab": false
-          }
         }
       },
       "block_order": [
         "expert_KR4dTW",
         "expert_EVctnF",
         "expert_KkJD6c",
-        "expert_GhgUm4",
-        "expert_LpCQni",
-        "expert_rFViy8"
+        "expert_GhgUm4"
       ],
       "name": "Unser Expertenteam",
       "settings": {
