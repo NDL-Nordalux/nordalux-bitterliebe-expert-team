@@ -226,7 +226,7 @@
         "expert_KR4dTW": {
           "type": "expert",
           "settings": {
-            "photo": "shopify://shop_images/dr-laura-stein.jpg",
+            "photo": "shopify://shop_images/dr-laura_Stein.jpg",
             "alt_text": "dr-laura-stein-ernaehrungswissenschaftlerin.jpg",
             "name": "Dr. Laura Stein",
             "role": "Ernährungswissenschaftlerin (M.Sc.)",
@@ -239,6 +239,7 @@
         "expert_EVctnF": {
           "type": "expert",
           "settings": {
+            "photo": "shopify://shop_images/Markus_Feldmann.jpg",
             "alt_text": "markus-feldmann-produktentwickler.jpg",
             "name": "Markus Feldmann",
             "role": "Produktentwickler & Qualitätsmanager",
@@ -251,6 +252,7 @@
         "expert_KkJD6c": {
           "type": "expert",
           "settings": {
+            "photo": "shopify://shop_images/Anne_keller.jpg",
             "alt_text": "anna-keller-heilpraktikerin.jpg",
             "name": "Anna Keller",
             "role": "Heilpraktikerin & Ernährungsexpertin",
@@ -265,7 +267,7 @@
           "settings": {
             "photo": "shopify://shop_images/Tobias-Berger.jpg",
             "alt_text": "tobias-berger-gesundheitscoach.jpg",
-            "name": "Tobias Berger",
+            "name": "Tobias Müller",
             "role": "Coach für ganzheitliche Gesundheit",
             "bio": "<p>Tobias unterstützt mit individuellen Coachings und Workshops, um Körper und Geist in Einklang zu bringen. Sein Credo: „Gesundheit beginnt im Kopf – und mit der richtigen Ernährung.“</p>",
             "link_label": "Mehr erfahren",
