@@ -232,7 +232,7 @@
             "role": "Ernährungswissenschaftlerin (M.Sc.)",
             "bio": "<p>Dr. Laura Stein forscht seit über 10 Jahren im Bereich pflanzlicher Bitterstoffe. Sie kombiniert wissenschaftliches Wissen mit praxisnahen Ernährungstipps für einen gesunden Lebensstil.</p>",
             "link_label": "Mehr erfahren",
-            "link_url": "",
+            "link_url": "/pages/dr-laura-stein",
             "link_new_tab": false
           }
         },
@@ -316,7 +316,10 @@
         "columns_desktop": 4,
         "bg": "#f7f7f7",
         "pad_y_mobile": 40,
-        "pad_y_desktop": 64
+        "pad_y_desktop": 64,
+        "show_card_link": true,
+        "footer_link_label": "Mehr über unser Team erfahren",
+        "footer_link_url": ""
       }
     }
   },
