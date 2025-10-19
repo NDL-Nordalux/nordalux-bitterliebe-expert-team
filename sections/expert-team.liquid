@@ -6,7 +6,7 @@
 {% endcomment %}
 
 {{ 'section-expert-team.css' | asset_url | stylesheet_tag }}
-{{ 'expert-team-mobile.js'   | asset_url | script_tag }}
+
 
 <section id="expert-team"
          class="expert-team {% if section.settings.center_snap %}center-snap{% endif %}"
@@ -77,7 +77,7 @@
     {% endif %}
   </div>
 </section>
-
+{{ 'expert-team-mobile.js'   | asset_url | script_tag }}
 {% schema %}
 {
   "name": "Unser Experten-Team",
