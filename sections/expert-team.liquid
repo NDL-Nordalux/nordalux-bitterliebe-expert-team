@@ -1,6 +1,16 @@
+{% comment %}
+  Expert Team — Grid (Desktop/Tablet) + Mobile Slider (auto-centering)
+  Assets needed:
+    - assets/section-expert-team.css
+    - assets/expert-team-mobile.js
+{% endcomment %}
+
+{{ 'section-expert-team.css' | asset_url | stylesheet_tag }}
+{{ 'expert-team-mobile.js'   | asset_url | script_tag }}
+
 <section id="expert-team"
-         class="expert-team"
-         style="--et-bg: {{ section.settings.bg | default: '#F7F7F7' }}; --cols-d: {{ section.settings.columns_desktop | default: 4 }}; --cols-t: {{ section.settings.columns_tablet | default: 2 }}; --cols-m: {{ section.settings.columns_mobile | default: 1 }};">
+         class="expert-team {% if section.settings.center_snap %}center-snap{% endif %}"
+         style="--et-bg: {{ section.settings.bg | default: '#F7F7F7' }}; --cols-d: {{ section.settings.columns_desktop | default: 4 }}; --cols-t: {{ section.settings.columns_tablet | default: 2 }};">
   <div class="expert-team__inner page-width">
     {% if section.settings.badge != blank %}
       <p class="expert-team__badge">{{ section.settings.badge }}</p>
@@ -12,19 +22,20 @@
       <div class="expert-team__intro rte">{{ section.settings.intro }}</div>
     {% endif %}
 
-    <div class="experts-grid">
+    <div class="experts-grid js-experts-slider" role="region" aria-label="{{ section.settings.heading | default: 'Expert:innen' }}">
       {% for block in section.blocks %}
         {% if block.type == 'expert' %}
           <article class="expert-card" {{ block.shopify_attributes }}>
-            {% if block.settings.photo != blank %}
+            {% assign _img = block.settings.photo | default: block.settings.image %}
+            {% if _img != blank %}
               <div class="expert-card__media">
                 {% assign alt_txt = block.settings.alt_text | default: block.settings.name %}
-                {{ block.settings.photo
+                {{ _img
                   | image_url: width: 1200
                   | image_tag:
                     alt: alt_txt,
                     loading: 'lazy',
-                    sizes: '(min-width:1200px) calc((min(1200px, 100vw) - 66px) / var(--cols-d)), (min-width:750px) calc((100vw - 44px) / var(--cols-t)), calc(100vw - 32px)',
+                    sizes: '(min-width:1200px) calc((min(1200px, 100vw) - 66px) / var(--cols-d)), (min-width:750px) calc((100vw - 44px) / var(--cols-t)), calc(100vw - 48px)',
                     widths: '360, 540, 720, 900, 1080, 1200' }}
               </div>
             {% endif %}
@@ -52,6 +63,11 @@
       {% endfor %}
     </div>
 
+    <div class="experts-slider-nav">
+      <button class="experts-slider-btn prev" type="button" aria-label="Vorherige Karte" disabled>‹</button>
+      <button class="experts-slider-btn next" type="button" aria-label="Nächste Karte">›</button>
+    </div>
+
     {% if section.settings.footer_link_url != blank and section.settings.footer_link_label != blank %}
       <div class="experts-footer-link">
         <a class="experts-footer-link__btn" href="{{ section.settings.footer_link_url }}">
@@ -60,65 +76,6 @@
       </div>
     {% endif %}
   </div>
-
-  <style>
-    #expert-team{
-      background: var(--et-bg);
-      padding: {{ section.settings.pad_y_mobile }}px 0;
-    }
-    @media (min-width:750px){
-      #expert-team{ padding: {{ section.settings.pad_y_desktop }}px 0; }
-    }
-    .expert-team__inner{ max-width: var(--page-width, 1200px); margin-inline:auto; }
-
-    .expert-team__badge{
-      text-transform: uppercase; letter-spacing:.08em;
-      font-size:.8rem; opacity:.7; margin:0 0 .4rem;
-    }
-    .expert-team__title{
-      margin:0 0 .6rem; line-height:1.2;
-      font-size: clamp(1.25rem, 2.4vw, 2rem);
-    }
-    .expert-team__intro{ margin:0 0 1.6rem; color:#333; opacity:.95; }
-
-    .experts-grid{
-      display:grid; gap:22px;
-      grid-template-columns: repeat(var(--cols-d), minmax(0,1fr));
-    }
-    @media (max-width:1199px){
-      .experts-grid{ grid-template-columns: repeat(var(--cols-t), minmax(0,1fr)); }
-    }
-    @media (max-width:749px){
-      .experts-grid{ grid-template-columns: repeat(var(--cols-m), minmax(0,1fr)); padding-inline: 16px; }
-    }
-
-    .expert-card{
-      background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:12px;
-      overflow:hidden; display:flex; flex-direction:column; height:100%;
-      box-shadow:0 1px 2px rgba(0,0,0,.04);
-      transition: box-shadow .25s ease, transform .25s ease;
-    }
-    .expert-card:hover{ transform: translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,.08); }
-
-    .expert-card__media{ width:100%; aspect-ratio: 4 / 3; overflow:hidden; background:#f6f6f6; }
-    .expert-card__media img{ width:100%; height:100%; object-fit:cover; display:block; }
-
-    .expert-card__body{ padding:18px 16px 16px; display:flex; flex-direction:column; gap:6px; }
-    .expert-card__name{ margin:0; font-size:1.05rem; font-weight:700; line-height:1.25; }
-    .expert-card__role{ margin:0; color:#5c5c5c; font-size:.95rem; font-weight:600; }
-    .expert-card__text{ color:#555; font-size:.95rem; line-height:1.55; }
-
-    .expert-card__link{
-      margin-top:auto; display:inline-block; text-decoration:underline; font-weight:700; font-size:.95rem;
-      padding-top: 6px;
-    }
-
-    .experts-footer-link{ text-align:center; margin-top: 28px; }
-    .experts-footer-link__btn{
-      display:inline-block; padding:10px 18px; border:1px solid #1c1c1c; border-radius:8px;
-      text-decoration:none; font-weight:700;
-    }
-  </style>
 </section>
 
 {% schema %}
@@ -134,12 +91,7 @@
     { "type": "range", "id": "columns_desktop", "label": "Spalten (Desktop)", "min": 1, "max": 6, "step": 1, "default": 4 },
     { "type": "range", "id": "columns_tablet",  "label": "Spalten (Tablet ≤ 1199px)", "min": 1, "max": 4, "step": 1, "default": 2 },
 
-    { "type": "select", "id": "columns_mobile", "label": "Spalten (Mobil ≤ 749px)", "default": "1",
-      "options": [
-        { "value": "1", "label": "1 Spalte" },
-        { "value": "2", "label": "2 Spalten" }
-      ]
-    },
+    { "type": "checkbox", "id": "center_snap", "label": "Auto-Center Snap im Slider (Mobil)", "default": true },
 
     { "type": "color", "id": "bg", "label": "Hintergrundfarbe", "default": "#F7F7F7" },
     { "type": "range", "id": "pad_y_mobile", "label": "Abstand oben/unten (Mobil)", "min": 20, "max": 120, "step": 2, "default": 40 },
@@ -155,6 +107,7 @@
       "name": "Expertenkarte",
       "settings": [
         { "type": "image_picker", "id": "photo", "label": "Foto" },
+        { "type": "image_picker", "id": "image", "label": "Foto (kompatibel – alt)", "info": "Nur für Rückwärtskompatibilität. Bitte das neue Feld „Foto“ verwenden." },
         { "type": "text", "id": "alt_text", "label": "Alt-Text (SEO)" },
         { "type": "text", "id": "name", "label": "Name" },
         { "type": "text", "id": "role", "label": "Rolle" },
