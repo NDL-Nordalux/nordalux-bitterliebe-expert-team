@@ -146,3 +146,4 @@
 .expert-card__text { 
   margin-bottom: 4px;  /* می‌تونی تغییرش بدی یا حذف کنی */
 }
+#expert-team .page-width { max-width: 1320px; margin-inline:auto; padding-inline:16px; }
