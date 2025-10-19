@@ -1,72 +1,61 @@
-/* section-expert-team.css */
-/* Responsive styles for Expert Team section */
+/* Expert Team — layout + responsive + mobile slider visuals */
 
-.expert-team {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+#expert-team{ background: var(--et-bg); }
+.expert-team__inner{ max-width: var(--page-width, 1200px); margin-inline:auto; }
+.expert-team__badge{ text-transform: uppercase; letter-spacing:.08em; font-size:.8rem; opacity:.7; margin:0 0 .4rem; }
+.expert-team__title{ margin:0 0 .6rem; line-height:1.2; font-size: clamp(1.25rem, 2.4vw, 2rem); }
+.expert-team__intro{ margin:0 0 1.6rem; color:#333; opacity:.95; }
+
+#expert-team{ padding: 40px 0; }
+@media (min-width:750px){ #expert-team{ padding: 80px 0; } }
+
+/* Grid (Desktop/Tablet) */
+.experts-grid{ display:grid; gap:22px; grid-template-columns: repeat(var(--cols-d), minmax(0,1fr)); }
+@media (max-width:1199px){ .experts-grid{ grid-template-columns: repeat(var(--cols-t), minmax(0,1fr)); } }
+
+/* Card */
+.expert-card{
+  background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:12px;
+  overflow:hidden; display:flex; flex-direction:column; height:100%;
+  box-shadow:0 1px 2px rgba(0,0,0,.04);
+  transition: box-shadow .25s ease, transform .25s ease;
 }
+.expert-card:hover{ transform: translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,.08); }
 
-.expert-card {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  flex: 1 1 100%;
-  max-width: 90%;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+.expert-card__media{ width:100%; aspect-ratio: 4 / 3; overflow:hidden; background:#f6f6f6; }
+.expert-card__media img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-.expert-card img {
-  width: 100%;
-  height: auto;
-  border-bottom: 2px solid #f2f2f2;
-}
+.expert-card__body{ padding:18px 16px 16px; display:flex; flex-direction:column; gap:6px; }
+.expert-card__name{ margin:0; font-size:1.05rem; font-weight:700; line-height:1.25; }
+.expert-card__role{ margin:0; color:#5c5c5c; font-size:.95rem; font-weight:600; }
+.expert-card__text{ color:#555; font-size:.95rem; line-height:1.55; }
+.expert-card__link{ margin-top:auto; display:inline-block; text-decoration:underline; font-weight:700; font-size:.95rem; padding-top: 6px; }
 
-.expert-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-}
+/* Footer CTA */
+.experts-footer-link{ text-align:center; margin-top: 28px; }
+.experts-footer-link__btn{ display:inline-block; padding:10px 18px; border:1px solid #1c1c1c; border-radius:8px; text-decoration:none; font-weight:700; }
 
-.expert-card h3 {
-  margin-top: 1rem;
-  font-size: 1.1rem;
-}
-
-.expert-card p {
-  padding: 0 1rem;
-  color: #555;
-}
-
-.expert-link {
-  display: inline-block;
-  margin: 1rem 0;
-  padding: 0.5rem 1rem;
-  background-color: #007ace;
-  color: #fff;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.expert-link:hover {
-  background-color: #005fa3;
-}
-
-@media (min-width: 768px) {
-  .expert-card {
-    flex: 1 1 calc(50% - 1.5rem);
-    max-width: calc(50% - 1.5rem);
+/* Mobile Slider (≤ 749px) */
+@media (max-width:749px){
+  .experts-grid{
+    display:block; overflow-x:auto; -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory; white-space: nowrap; gap:0; padding-inline: 16px;
   }
-}
-
-@media (min-width: 1024px) {
-  .expert-card {
-    flex: 1 1 calc(25% - 1.5rem);
-    max-width: calc(25% - 1.5rem);
+  .experts-slider-nav{ display:flex; justify-content:space-between; gap:12px; margin-top:12px; padding:0 16px; }
+  .experts-slider-btn{
+    appearance:none; border:1px solid #1c1c1c; background:#fff; border-radius:999px;
+    width:42px; height:42px; font-size:22px; font-weight:700; line-height:1; cursor:pointer;
   }
+  .experts-slider-btn[disabled]{ opacity:.45; cursor:default; }
+
+  .experts-grid .expert-card{
+    display:inline-block; vertical-align:top;
+    width: 82%; min-width:82%; margin: 0 8px; white-space: normal;
+    scroll-snap-align: start;
+  }
+
+  /* فعال‌سازی auto-centering snap */
+  .expert-team.center-snap .experts-grid{ padding-inline: calc((100% - 82%) / 2); }
+  .expert-team.center-snap .experts-grid .expert-card{ scroll-snap-align: center; }
 }
+@media (min-width:750px){ .experts-slider-nav{ display:none; } }
