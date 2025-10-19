@@ -196,3 +196,23 @@
 .expert-card:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
 }
+/* 1) جلوگیری از اسکرول افقی کل صفحه */
+html, body {
+  overflow-x: hidden;
+}
+
+/* 2) در حالت موبایل: اسکرولِ افقیِ اسلایدر پنهان شود اما فعال بماند */
+@media (max-width: 749px) {
+  .experts-grid {
+    -ms-overflow-style: none;   /* IE/Edge قدیمی */
+    scrollbar-width: none;      /* Firefox */
+    overscroll-behavior-x: contain; /* از بونسینگ صفحه جلوگیری می‌کند */
+  }
+  .experts-grid::-webkit-scrollbar { /* Chrome/Safari */
+    display: none;
+  }
+
+  /* 3) از بیرون‌زدگی آخر/اول کارت‌ها جلوگیری شود */
+  .experts-grid .expert-card:first-child { margin-left: 0; }
+  .experts-grid .expert-card:last-child {  margin-right: 0; }
+}
