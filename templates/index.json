@@ -288,7 +288,7 @@
         "heading": "Unser Experten-Team",
         "intro": "",
         "width": "wide",
-        "columns_desktop": 2,
+        "columns_desktop": 4,
         "columns_tablet": 2,
         "center_snap": true,
         "bg": "#f7f7f7",
