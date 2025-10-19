@@ -124,9 +124,9 @@
 .expert-card__text {
   font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
   color: #333;
-  line-height: 3;
+  line-height: 1.55;
   margin-bottom: 10px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
