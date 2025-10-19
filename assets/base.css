@@ -3602,7 +3602,7 @@ details-disclosure > details {
 /* دسکتاپ‌های بزرگ */
 @media (min-width: 1200px) {
   .page-width {
-    max-width: 1800px;       /* پیش‌فرض Shopify حدود 1100–1200 بود */
+    max-width: 1560px;       /* پیش‌فرض Shopify حدود 1100–1200 بود */
     margin-left: auto;
     margin-right: auto;
     padding-left: 20px;      /* گاتر کمتر از حالت عادی */
