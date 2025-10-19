@@ -1,4 +1,4 @@
-/* === Expert Team Section === */
+/* Expert Team Section Fix */
 #expert-team {
   background: var(--et-bg);
   padding: 40px 0;
@@ -7,32 +7,6 @@
 }
 @media (min-width: 750px) {
   #expert-team { padding: 80px 0; }
-}
-
-/* Headings */
-.expert-team__inner {
-  max-width: var(--page-width, 1200px);
-  margin-inline: auto;
-}
-.expert-team__badge {
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  font-size: 0.8rem;
-  opacity: .7;
-  margin: 0 0 .4rem;
-}
-.expert-team__title {
-  margin: 0 0 .6rem;
-  line-height: 1.25;
-  font-size: clamp(1.25rem, 2.4vw, 2rem);
-  font-weight: 700;
-}
-.expert-team__intro {
-  margin: 0 0 1.6rem;
-  color: #333;
-  opacity: .95;
-  font-size: 1rem;
-  line-height: 1.55;
 }
 
 /* Grid */
@@ -53,19 +27,19 @@
   background: #fff;
   border: 1px solid rgba(0,0,0,.06);
   border-radius: 12px;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   height: 100%;
+  overflow: hidden;
   box-shadow: 0 1px 2px rgba(0,0,0,.04);
-  transition: box-shadow .25s ease, transform .25s ease;
+  transition: all 0.25s ease;
 }
-.expert-card:hover { transform: none; box-shadow: none; }
 
-/* Image area */
+/* Image area — unify aspect ratio */
 .expert-card__media {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 3; /* ثابت برای همه کارت‌ها */
   overflow: hidden;
   background: #f6f6f6;
 }
@@ -75,66 +49,46 @@
   object-fit: cover;
   display: block;
 }
-.expert-media__placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #9aa1a7;
-  font-size: 0.95rem;
-  letter-spacing: 0.02em;
-}
 
-/* Card body */
+/* Body */
 .expert-card__body {
-  padding: 18px 16px 16px;
+  padding: 18px 16px 20px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
   flex: 1;
 }
 
-/* Typography – exakt wie im Screenshot */
+/* Typography (match BitterLiebe/NatureHeart) */
 .expert-card__name {
-  font-size: 16px;
+  font-size: clamp(15px, 1.6vw, 17px);
   font-weight: 700;
   line-height: 1.25;
-  margin: 0;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  min-height: 2.5em;
+  margin: 0 0 2px 0;
   color: #1c1c1c;
 }
 .expert-card__role {
-  font-size: 14px;
+  font-size: clamp(13.5px, 1.4vw, 15px);
   font-weight: 600;
   color: #5c5c5c;
-  margin: 0;
-  line-height: 1.4;
-  min-height: 1.4em;
+  margin: 0 0 6px 0;
 }
 .expert-card__text {
-  font-size: 15px;
-  font-weight: 400;
+  font-size: clamp(14px, 1.5vw, 15px);
   color: #555;
   line-height: 1.55;
+  flex-grow: 1;
+  overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 6;
-  overflow: hidden;
-  min-height: calc(1em * 1.55 * 6);
 }
 .expert-card__link {
-  margin-top: auto;
-  display: inline-block;
-  text-decoration: underline;
-  font-weight: 600;
   font-size: 15px;
-  padding-top: 6px;
+  font-weight: 600;
   color: #1c1c1c;
+  text-decoration: underline;
+  margin-top: 8px;
+  display: inline-block;
 }
 
 /* Footer CTA */
@@ -149,11 +103,11 @@
   border-radius: 8px;
   text-decoration: none;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 15px;
   color: #1c1c1c;
 }
 
-/* Mobile swipe */
+/* Mobile swipe version */
 @media (max-width: 749px) {
   .experts-grid {
     display: block;
@@ -164,13 +118,15 @@
     padding-inline: 16px;
   }
   .experts-grid .expert-card {
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: column;
     vertical-align: top;
     width: 82%;
     min-width: 82%;
     margin: 0 8px;
     white-space: normal;
     scroll-snap-align: center;
+    height: auto;
   }
   .expert-team.center-snap .experts-grid {
     padding-inline: calc((100% - 82%) / 2);
