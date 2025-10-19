@@ -28,19 +28,23 @@
       {% for block in section.blocks %}
         {% if block.type == 'expert' %}
           <article class="expert-card" {{ block.shopify_attributes }}>
-            {% assign _img = block.settings.photo %}
-            {% if _img != blank %}
-              <div class="expert-card__media">
+            {%- assign img = block.settings.photo -%}
+
+            <!-- Media: همیشه رندر شود، اگر عکس نبود placeholder -->
+            <div class="expert-card__media">
+              {% if img != blank %}
                 {% assign alt_txt = block.settings.alt_text | default: block.settings.name %}
-                {{ _img
+                {{ img
                   | image_url: width: 1200
                   | image_tag:
                     alt: alt_txt,
                     loading: 'lazy',
                     sizes: '(min-width:1200px) calc((min(1200px, 100vw) - 66px) / var(--cols-d)), (min-width:750px) calc((100vw - 44px) / var(--cols-t)), calc(100vw - 48px)',
                     widths: '360, 540, 720, 900, 1080, 1200' }}
-              </div>
-            {% endif %}
+              {% else %}
+                <div class="expert-media__placeholder">Bild hochladen</div>
+              {% endif %}
+            </div>
 
             <div class="expert-card__body">
               {% if block.settings.name != blank %}
