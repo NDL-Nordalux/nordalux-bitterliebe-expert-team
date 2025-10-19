@@ -3625,3 +3625,12 @@ details-disclosure > details {
     padding-inline: 16px;
   }
 }
+/* ============================================
+   WIDER PAGE WIDTH — PAYAM CUSTOM
+   ============================================ */
+@media (min-width: 1200px) {
+  .page-width {
+    max-width: 1560px;   /* عرض بیشتر برای Expert Team و بقیه‌ی صفحات */
+    padding-inline: 16px; /* فاصله از کناره‌ها کمتر */
+  }
+}
