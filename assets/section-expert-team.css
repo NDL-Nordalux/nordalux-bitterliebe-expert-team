@@ -52,33 +52,50 @@
 /* ===============================
    TYPOGRAPHY — SINGLE SOURCE OF TRUTH (BitterLiebe-like)
    =============================== */
-.expert-card__name{
-  font-family:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size:clamp(1rem, 0.9rem + 0.4vw, 1.125rem);
-  font-weight:700; line-height:1.25; margin:0;
-  color:#1c1c1c;
+.expert-card__name {
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 4px;
+  color: #1b1b1b;
 }
-.expert-card__role{
-  font-family:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size:clamp(.875rem, .8rem + .3vw, 1rem);
-  font-weight:600; color:#5c5c5c; line-height:1.3; margin:0;
-  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:1; overflow:hidden; /* single line */
+
+.expert-card__role {
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+  line-height: 1.4;
+  margin-bottom: 10px;
 }
-.expert-card__text{
-  font-family:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size:clamp(.9rem, .85rem + .25vw, 1rem);
-  font-weight:400; color:#555; line-height:1.55; flex-grow:1;
-  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; overflow:hidden; /* 3 lines */
+
+.expert-card__text {
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+  line-height: 1.55;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
+
 .expert-card__text p{ margin:0; }
 .expert-card__text p + p{ margin-top:.5rem; }
 
-.expert-card__link{
-  margin-top:auto; display:inline-block;
-  text-decoration:underline; font-weight:700;
-  font-size:clamp(.9rem, .85rem + .25vw, 1rem);
-  color:#1c1c1c; line-height:1.4; padding-top:6px;
+.expert-card__link {
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: underline;
+  color: #1b1b1b;
+  line-height: 1.4;
+  padding-top: 8px;
 }
+
 
 /* Footer CTA */
 .experts-footer-link{ text-align:center; margin-top:28px; }
