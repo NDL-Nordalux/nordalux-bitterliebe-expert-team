@@ -46,7 +46,7 @@
 /* Body */
 .expert-card__body{
   padding:18px 16px 20px;
-  display:flex; flex-direction:column; flex-grow:1; gap:.5rem;
+  display:flex; flex-direction:column; flex-grow:1; gap:0;
 }
 
 /* ===============================
@@ -67,7 +67,7 @@
   font-weight: 300;
   color: #555;
   line-height: 1.4;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
 }
 
 .expert-card__text {
