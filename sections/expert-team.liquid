@@ -28,7 +28,7 @@
       {% for block in section.blocks %}
         {% if block.type == 'expert' %}
           <article class="expert-card" {{ block.shopify_attributes }}>
-            {% assign _img = block.settings.photo | default: block.settings.image %}
+            {% assign _img = block.settings.photo %}
             {% if _img != blank %}
               <div class="expert-card__media">
                 {% assign alt_txt = block.settings.alt_text | default: block.settings.name %}
@@ -104,7 +104,6 @@
       "name": "Expertenkarte",
       "settings": [
         { "type": "image_picker", "id": "photo", "label": "Foto" },
-        { "type": "image_picker", "id": "image", "label": "Foto (kompatibel – alt)" },
         { "type": "text", "id": "alt_text", "label": "Alt-Text (SEO)" },
         { "type": "text", "id": "name", "label": "Name" },
         { "type": "text", "id": "role", "label": "Rolle" },
