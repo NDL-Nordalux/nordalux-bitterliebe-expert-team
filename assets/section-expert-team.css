@@ -122,3 +122,27 @@
   .experts-grid .expert-card:first-child{ margin-left:0; }
   .experts-grid .expert-card:last-child{ margin-right:0; }
 }
+/* === Overrides for Role & Beschreibung === */
+
+/* 1) gap رو صفر می‌کنیم تا فاصله‌ی بین آیتم‌ها رو خودمون با margin کنترل کنیم */
+.expert-card__body { 
+  gap: 0; 
+}
+
+/* 2) فونت‌سایز و وزن یکسان برای Role و Beschreibung */
+.expert-card__role,
+.expert-card__text {
+  font-size: 14px;     /* هر دو 14px */
+  font-weight: 400;    /* یکسان شدن وزن؛ خواستی می‌تونی 300 هم بذاری برای هر دو */
+  /* font-family هم که قبلاً یکیه، نیازی به تکرار نیست */
+}
+
+/* 3) فاصله دقیق بین Role و Beschreibung */
+.expert-card__role { 
+  margin-bottom: 4px;  /* فاصله‌ی عمودی با متن توضیح = 4px */
+}
+
+/* (اختیاری) فاصله پایین توضیحات اگر نیاز داری */
+.expert-card__text { 
+  margin-bottom: 4px;  /* می‌تونی تغییرش بدی یا حذف کنی */
+}
