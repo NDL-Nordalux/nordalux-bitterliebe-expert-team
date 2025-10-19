@@ -1,12 +1,10 @@
 {% comment %}
-  Expert Team — Grid (Desktop/Tablet) + Mobile Slider (auto-centering)
+  Expert Team — Grid (Desktop/Tablet) + Mobile Swipe Slider (auto-centering)
   Assets needed:
     - assets/section-expert-team.css
-    - assets/expert-team-mobile.js
 {% endcomment %}
 
 {{ 'section-expert-team.css' | asset_url | stylesheet_tag }}
-
 
 <section id="expert-team"
          class="expert-team {% if section.settings.center_snap %}center-snap{% endif %}"
@@ -22,10 +20,10 @@
       <div class="expert-team__intro rte">{{ section.settings.intro }}</div>
     {% endif %}
 
-   <div class="experts-grid js-experts-slider"
-     role="region"
-     aria-label="{{ section.settings.heading | default: 'Expert:innen' }}"
-     tabindex="0">
+    <div class="experts-grid js-experts-slider"
+         role="region"
+         aria-label="{{ section.settings.heading | default: 'Expert:innen' }}"
+         tabindex="0">
 
       {% for block in section.blocks %}
         {% if block.type == 'expert' %}
@@ -67,8 +65,6 @@
       {% endfor %}
     </div>
 
-   
-
     {% if section.settings.footer_link_url != blank and section.settings.footer_link_label != blank %}
       <div class="experts-footer-link">
         <a class="experts-footer-link__btn" href="{{ section.settings.footer_link_url }}">
@@ -108,7 +104,7 @@
       "name": "Expertenkarte",
       "settings": [
         { "type": "image_picker", "id": "photo", "label": "Foto" },
-        { "type": "image_picker", "id": "image", "label": "Foto (kompatibel – alt)", "info": "Nur für Rückwärtskompatibilität. Bitte das neue Feld „Foto“ verwenden." },
+        { "type": "image_picker", "id": "image", "label": "Foto (kompatibel – alt)" },
         { "type": "text", "id": "alt_text", "label": "Alt-Text (SEO)" },
         { "type": "text", "id": "name", "label": "Name" },
         { "type": "text", "id": "role", "label": "Rolle" },
