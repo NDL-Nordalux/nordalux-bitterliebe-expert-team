@@ -14,7 +14,7 @@
   --et-card-bg: #fff;
 
   --space-section-y: 40px;
-  --space-card-gap: 10px;
+  --space-card-gap: 0px;
 
   --fs-body: var(--font-body-scale, 1rem);
   --fs-badge: .8rem;
