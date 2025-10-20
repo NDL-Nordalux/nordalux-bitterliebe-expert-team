@@ -422,3 +422,16 @@
 @media (prefers-reduced-motion: reduce){
   .expert-card{ transition: none !important; }
 }
+/* Force white background for Expert Team (final override) */
+#expert-team,
+#expert-team .expert-team__inner,
+#expert-team .expert-team__inner.page-width {
+  --et-bg: #fff !important;
+  background: #fff !important;
+}
+
+/* اگر والد‌های تم بک‌گراند می‌دهند (اختیاری اما مفید) */
+.section#expert-team,
+.shopify-section:has(#expert-team) {
+  background: #fff !important;
+}
