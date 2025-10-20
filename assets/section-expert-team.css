@@ -198,41 +198,41 @@
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
     white-space: nowrap;
-    padding-inline: 6px;               /* از 16 به 6 کاهش یافت */
+    padding-inline: 6px;              
     scroll-padding-inline: 6px;
     overscroll-behavior-x: contain;
   }
 
   #expert-team .experts-grid::-webkit-scrollbar { display: none; }
 
-  /* مرکز اسنپ هماهنگ با عرض جدید */
+ 
   .expert-team.center-snap #expert-team .experts-grid,
   #expert-team.expert-team.center-snap .experts-grid {
     padding-inline: calc((100% - var(--card-w)) / 2);
     scroll-padding-inline: calc((100% - var(--card-w)) / 2);
   }
 
-  /* کارت: عرض بیشتر، فاصله کمتر، گوشه نرم‌تر */
+  
   #expert-team .expert-card {
     display: inline-flex;
     flex-direction: column;
     vertical-align: top;
     width: var(--card-w) !important;
     min-width: var(--card-w) !important;
-    margin: 0 4px;                     /* فاصله کمتر بین کارت‌ها */
+    margin: 0 4px;                    
     white-space: normal;
     scroll-snap-align: center;
     height: auto;
-    background: #fff;                  /* پس‌زمینه سفید */
+    background: #fff;                 
     border: 1px solid rgba(0,0,0,.05);
     border-radius: 14px;
     box-shadow: 0 4px 12px rgba(0,0,0,.05);
   }
 
-  /* تصویر بزرگ‌تر (مثل Nature Heart) */
+ 
   #expert-team .expert-card__media {
     width: 100%;
-    aspect-ratio: 3 / 2;               /* از 4/3 به 3/2 → تصویر بلندتر */
+    aspect-ratio: 3 / 2;               
     overflow: hidden;
     background: #fff;
   }
@@ -244,15 +244,15 @@
     display: block;
   }
 
-  /* بدنه کارت فشرده‌تر */
+  
   #expert-team .expert-card__body {
-    padding: 14px 14px !important;     /* از 20 → 14px */
+    padding: 14px 14px !important;  
     display: flex;
     flex-direction: column;
     gap: 5px;
   }
 
-  /* تیتر و متن هماهنگ با Nature Heart */
+  
   #expert-team .expert-card__name {
     font-size: var(--fs-name) !important;
     font-weight: 700;
@@ -285,35 +285,35 @@
     color: #1c1c1c;
   }
 }
-/* 1) کم‌کردن padding ظرف بیرونی در موبایل */
+
 @media (max-width: 749px){
   #expert-team .expert-team__inner.page-width{
-    padding-inline: 8px !important; /* از 32px به 8px */
+    padding-inline: 8px !important; 
   }
 }
 
-/* 2) حداقل فاصله‌ی کناره‌ها حتی با center-snap */
+
 @media (max-width: 749px){
-  /* اگر center_snap روشن باشد، این قانون جای calc قبلی را می‌گیرد */
+  
   .expert-team.center-snap #expert-team .experts-grid,
   #expert-team.expert-team.center-snap .experts-grid{
-    /* حداقل 6px، وگرنه محاسبه‌ی center */
+   
     padding-inline: clamp(6px, calc((100% - var(--card-w)) / 2), 24px) !important;
     scroll-padding-inline: clamp(6px, calc((100% - var(--card-w)) / 2), 24px) !important;
   }
 
-  /* اگر center_snap خاموش است هم صراحتاً کمش کن */
+ 
   #expert-team .experts-grid{
     padding-inline: 6px !important;
     scroll-padding-inline: 6px !important;
   }
 
-  /* فاصله بین کارت‌ها هم کمتر شود */
+ 
   #expert-team .expert-card{
-    margin: 0 4px !important; /* قبلاً 8/10px */
+    margin: 0 4px !important;
   }
 }
 
-/* 3) پس‌زمینه 100٪ سفید (سکشن و کارت) */
+
 #expert-team{ --et-bg: #fff; background:#fff !important; }
 #expert-team .expert-card{ background:#fff !important; }
