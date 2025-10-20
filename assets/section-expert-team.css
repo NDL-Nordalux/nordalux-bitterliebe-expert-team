@@ -209,8 +209,7 @@
   overflow: hidden;
 }
 
-.expert-card__text p{ margin:0; }
-.expert-card__text p + p{ margin-top:.5rem; }
+
 
 .expert-card__link {
   font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
