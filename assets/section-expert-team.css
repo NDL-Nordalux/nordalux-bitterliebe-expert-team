@@ -285,3 +285,35 @@
     color: #1c1c1c;
   }
 }
+/* 1) کم‌کردن padding ظرف بیرونی در موبایل */
+@media (max-width: 749px){
+  #expert-team .expert-team__inner.page-width{
+    padding-inline: 8px !important; /* از 32px به 8px */
+  }
+}
+
+/* 2) حداقل فاصله‌ی کناره‌ها حتی با center-snap */
+@media (max-width: 749px){
+  /* اگر center_snap روشن باشد، این قانون جای calc قبلی را می‌گیرد */
+  .expert-team.center-snap #expert-team .experts-grid,
+  #expert-team.expert-team.center-snap .experts-grid{
+    /* حداقل 6px، وگرنه محاسبه‌ی center */
+    padding-inline: clamp(6px, calc((100% - var(--card-w)) / 2), 24px) !important;
+    scroll-padding-inline: clamp(6px, calc((100% - var(--card-w)) / 2), 24px) !important;
+  }
+
+  /* اگر center_snap خاموش است هم صراحتاً کمش کن */
+  #expert-team .experts-grid{
+    padding-inline: 6px !important;
+    scroll-padding-inline: 6px !important;
+  }
+
+  /* فاصله بین کارت‌ها هم کمتر شود */
+  #expert-team .expert-card{
+    margin: 0 4px !important; /* قبلاً 8/10px */
+  }
+}
+
+/* 3) پس‌زمینه 100٪ سفید (سکشن و کارت) */
+#expert-team{ --et-bg: #fff; background:#fff !important; }
+#expert-team .expert-card{ background:#fff !important; }
