@@ -180,91 +180,100 @@
   .experts-grid{ gap: 40px; }
 }
 
-/* ─────────────────────────────────────────────
-   Mobile Layout (Nature Heart Look)
-   ───────────────────────────────────────────── */
+/* ===============================
+   MOBILE FINAL — Nature Heart Style (Payam)
+   =============================== */
 @media (max-width: 749px) {
   #expert-team {
-    --card-w: 88%;
+    --card-w: 93%;       /* کارت‌ها پهن‌تر از قبل */
     --fs-name: 18px;
     --fs-meta: 15px;
+    --et-bg: #fff;       /* پس‌زمینه سفید */
   }
 
+  /* کانتینر اسلایدر: فاصله از کناره‌ها کمتر */
   #expert-team .experts-grid {
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
     white-space: nowrap;
-    padding-inline: 16px;
-    scroll-padding-inline: 16px;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    padding-inline: 6px;               /* از 16 به 6 کاهش یافت */
+    scroll-padding-inline: 6px;
     overscroll-behavior-x: contain;
   }
-  #expert-team .experts-grid::-webkit-scrollbar{ display: none; }
 
+  #expert-team .experts-grid::-webkit-scrollbar { display: none; }
+
+  /* مرکز اسنپ هماهنگ با عرض جدید */
   .expert-team.center-snap #expert-team .experts-grid,
   #expert-team.expert-team.center-snap .experts-grid {
     padding-inline: calc((100% - var(--card-w)) / 2);
     scroll-padding-inline: calc((100% - var(--card-w)) / 2);
   }
 
+  /* کارت: عرض بیشتر، فاصله کمتر، گوشه نرم‌تر */
   #expert-team .expert-card {
     display: inline-flex;
     flex-direction: column;
     vertical-align: top;
     width: var(--card-w) !important;
     min-width: var(--card-w) !important;
-    margin: 0 10px;
+    margin: 0 4px;                     /* فاصله کمتر بین کارت‌ها */
     white-space: normal;
     scroll-snap-align: center;
     height: auto;
-
-    background: #fff;
-    border: 1px solid rgba(0,0,0,.06);
-    border-radius: 16px;
-    box-shadow: 0 6px 18px rgba(0,0,0,.07);
+    background: #fff;                  /* پس‌زمینه سفید */
+    border: 1px solid rgba(0,0,0,.05);
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.05);
   }
 
+  /* تصویر بزرگ‌تر (مثل Nature Heart) */
   #expert-team .expert-card__media {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 3 / 2;               /* از 4/3 به 3/2 → تصویر بلندتر */
     overflow: hidden;
-    background: #f6f6f6;
+    background: #fff;
   }
 
+  #expert-team .expert-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* بدنه کارت فشرده‌تر */
   #expert-team .expert-card__body {
-    padding: 16px 18px !important;
+    padding: 14px 14px !important;     /* از 20 → 14px */
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
   }
 
+  /* تیتر و متن هماهنگ با Nature Heart */
   #expert-team .expert-card__name {
     font-size: var(--fs-name) !important;
     font-weight: 700;
     line-height: 1.35;
     margin-bottom: 2px;
-    color: rgb(77,73,73);
+    color: #1b1b1b;
   }
 
   #expert-team .expert-card__role,
   #expert-team .expert-card__text,
   #expert-team .expert-card__link {
     font-size: var(--fs-meta) !important;
+    color: #555;
   }
 
   #expert-team .expert-card__role {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
   }
 
   #expert-team .expert-card__text {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
   }
@@ -273,24 +282,6 @@
     text-decoration: underline;
     font-weight: 700;
     padding-top: 6px;
+    color: #1c1c1c;
   }
-}
-
-/* ─────────────────────────────────────────────
-   Footer CTA & Motion
-   ───────────────────────────────────────────── */
-.experts-footer-link { text-align:center; margin-top:28px; }
-.experts-footer-link__btn {
-  display:inline-block;
-  padding:10px 18px;
-  border:1px solid #1c1c1c;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:700;
-  font-size:15px;
-  color:#1c1c1c;
-}
-
-@media (prefers-reduced-motion: reduce){
-  .expert-card{ transition: none !important; }
 }
