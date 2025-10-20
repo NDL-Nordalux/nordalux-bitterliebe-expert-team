@@ -198,3 +198,24 @@
     gap: 40px;
   }
 }
+/* فقط داخل سکشن Expert-Team، ظرف page-width رو پهن‌تر کن */
+#expert-team .expert-team__inner.page-width{
+  max-width: 1600px !important;   /* یا 1800px اگر مانیتور خیلی عریضه */
+  padding-left: 32px;
+  padding-right: 32px;
+  margin-inline: auto;
+}
+
+/* اطمینان از 4 ستون روی دسکتاپ */
+@media (min-width: 1200px){
+  #expert-team .experts-grid{
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 32px;
+  }
+}
+
+/* برای مانیتورهای خیلی عریض */
+@media (min-width: 1600px){
+  #expert-team .expert-team__inner.page-width{ max-width: 1800px !important; }
+  #expert-team .experts-grid{ gap: 40px; }
+}
