@@ -1,31 +1,39 @@
 {% comment %}
-  Expert Team — Grid (Desktop/Tablet) + Mobile Swipe Slider (auto-centering)
-  Assets needed:
-    - assets/section-expert-team.css
+  Expert Team — Section
+  نیازمندی:
+    - assets/section-expert-team.css  (همان CSS نهایی که بهت دادم)
 {% endcomment %}
 
 {{ 'section-expert-team.css' | asset_url | stylesheet_tag }}
 
 <section id="expert-team"
          class="expert-team {% if section.settings.center_snap %}center-snap{% endif %}"
-         style="--et-bg: '#fff'; --cols-d: {{ section.settings.columns_desktop | default: 4 }}; --cols-t: {{ section.settings.columns_tablet | default: 2 }};">
+         style="
+           --et-bg: {{ section.settings.bg }};
+           --cols-d: {{ section.settings.columns_desktop | default: 4 }};
+           --cols-t: {{ section.settings.columns_tablet  | default: 2 }};
+           --space-section-y: {{ section.settings.pad_y_mobile | default: 40 }}px;
+         ">
   <div class="expert-team__inner page-width
        {% if section.settings.width == 'wide' %} page-width--wide
        {% elsif section.settings.width == 'full' %} page-width--full
        {% endif %}">
-       
+
     {% if section.settings.badge != blank %}
       <p class="expert-team__badge">{{ section.settings.badge }}</p>
     {% endif %}
+
     {% if section.settings.heading != blank %}
       <h2 class="expert-team__title">{{ section.settings.heading }}</h2>
     {% endif %}
+
     {% if section.settings.intro != blank %}
       <div class="expert-team__intro rte">{{ section.settings.intro }}</div>
     {% endif %}
 
     <div class="experts-grid js-experts-slider"
          role="region"
+         aria-roledescription="carousel"
          aria-label="{{ section.settings.heading | default: 'Expert:innen' }}"
          tabindex="0">
 
@@ -36,7 +44,7 @@
 
             <div class="expert-card__media">
               {% if img != blank %}
-                {% assign alt_txt = block.settings.alt_text | default: block.settings.name %}
+                {% assign alt_txt = block.settings.alt_text | default: block.settings.name | default: 'Expert Photo' %}
                 {{ img
                   | image_url: width: 1200
                   | image_tag:
@@ -53,15 +61,18 @@
               {% if block.settings.name != blank %}
                 <h3 class="expert-card__name">{{ block.settings.name }}</h3>
               {% endif %}
+
               {% if block.settings.role != blank %}
                 <p class="expert-card__role">{{ block.settings.role }}</p>
               {% endif %}
+
               {% if block.settings.bio != blank %}
                 <div class="expert-card__text">{{ block.settings.bio }}</div>
               {% endif %}
 
               {% if section.settings.show_card_link and block.settings.link_url != blank %}
-                <a class="expert-card__link" href="{{ block.settings.link_url }}"
+                <a class="expert-card__link"
+                   href="{{ block.settings.link_url }}"
                    {% if block.settings.link_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
                   {{ block.settings.link_label | default: 'Mehr erfahren' }}
                 </a>
@@ -143,3 +154,8 @@
   ]
 }
 {% endschema %}
+
+{% javascript %}
+  /* در صورت نیاز به ارتقای تعاملی موبایل، می‌تونی JS اضافه کنی.
+     اما همین سکشن با CSS فقط (scroll-snap) هم کامل کار می‌کنه. */
+{% endjavascript %}
