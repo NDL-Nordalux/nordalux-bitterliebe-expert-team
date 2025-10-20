@@ -2,60 +2,218 @@
    EXPERT TEAM SECTION — CLEAN
    =============================== */
 
+/* ─────────────────────────────────────────────
+   Expert Team — Cleaned & Consolidated Styles
+   ───────────────────────────────────────────── */
 #expert-team{
-  background: var(--et-bg, #f7f7f7);
-  font-family: Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: var(--font-body-scale, 1rem);
-  color:#1c1c1c;
-  padding:40px 0;
+  --et-bg: #f7f7f7;
+  --et-text: #1c1c1c;
+  --et-muted: #555;
+  --et-muted-strong: #444;
+  --et-border: rgba(0,0,0,.06);
+  --et-card-bg: #fff;
+
+  --space-section-y: 40px;
+  --space-card-gap: 22px;
+
+  --fs-body: var(--font-body-scale, 1rem);
+  --fs-badge: .8rem;
+  --fs-title-min: 1.25rem;
+  --fs-title-max: 2rem;
+  --fs-name: 20px;
+  --fs-meta: 16px;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+
+  background: var(--et-bg);
+  color: var(--et-text);
+  font-family: Inter,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: var(--fs-body);
+  padding: var(--space-section-y) 0;
 }
-@media (min-width:750px){ #expert-team{ padding:80px 0; } }
+
+/* spacing desktop */
+@media (min-width:750px){
+  #expert-team{ padding: 80px 0; }
+}
+
+/* Container (single source of truth) */
+#expert-team .expert-team__inner.page-width{
+  max-width: 1600px;
+  padding-inline: 32px;
+  margin-inline: auto;
+}
+@media (min-width:1600px){
+  #expert-team .expert-team__inner.page-width{ max-width: 1800px; }
+}
 
 /* Headings */
-.expert-team__badge{ text-transform:uppercase; letter-spacing:.08em; font-size:.8rem; opacity:.7; margin:0 0 .4rem; }
-.expert-team__title{ margin:0 0 .6rem; line-height:1.2; font-size:clamp(1.25rem,2.4vw,2rem); font-weight:700; }
-.expert-team__intro{ margin:0 0 1.6rem; color:#333; opacity:.95; }
+.expert-team__badge{
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: var(--fs-badge);
+  opacity: .7;
+  margin: 0 0 .4rem;
+}
+.expert-team__title{
+  margin: 0 0 .6rem;
+  line-height: 1.2;
+  font-size: clamp(var(--fs-title-min), 2.4vw, var(--fs-title-max));
+  font-weight: var(--fw-bold);
+}
+.expert-team__intro{
+  margin: 0 0 1.6rem;
+  color: #333;
+  opacity: .95;
+}
 
 /* Grid */
 .experts-grid{
-  display:grid; gap:22px;
-  grid-template-columns:repeat(var(--cols-d,4),minmax(0,1fr));
-  align-items:stretch;
+  display: grid;
+  gap: var(--space-card-gap);
+  grid-template-columns: repeat(var(--cols-d,4), minmax(0,1fr));
+  align-items: stretch;
 }
 @media (max-width:1199px){
-  .experts-grid{ grid-template-columns:repeat(var(--cols-t,2),minmax(0,1fr)); }
+  .experts-grid{ grid-template-columns: repeat(var(--cols-t,2), minmax(0,1fr)); }
 }
 
-/* Card */
+/* Cards */
 .expert-card{
-  background:#fff;
-  border:1px solid rgba(0,0,0,.06);
-  border-radius:12px;
-  overflow:hidden;
-  display:flex; flex-direction:column; justify-content:space-between;
-  box-shadow:0 1px 2px rgba(0,0,0,.04);
-  height:100%;
+  background: var(--et-card-bg);
+  border: 1px solid var(--et-border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  height: 100%;
+  transition: transform .25s ease, box-shadow .25s ease;
 }
-/* Hover off (keeps parity with BitterLiebe) */
-.expert-card:hover{ transform:none; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+/* Hover intentionally mild */
+.expert-card:hover{
+  transform: none;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
 
 /* Media */
-.expert-card__media{ width:100%; aspect-ratio:4/3; overflow:hidden; background:#f6f6f6; }
-.expert-card__media img{ width:100%; height:100%; object-fit:cover; display:block; }
+.expert-card__media{
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f6f6f6;
+}
+.expert-card__media img{
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
 
 /* Body */
 .expert-card__body{
-  padding:18px 16px 20px;
-  display:flex; flex-direction:column; flex-grow:1; gap:0.5rem;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 0; /* کنترل فاصله‌ها با margin های عناصر داخلی */
 }
 
-/* ===============================
-   TYPOGRAPHY — SINGLE SOURCE OF TRUTH (BitterLiebe-like)
-   =============================== */
+/* Typography */
+.expert-card__name{
+  font-size: var(--fs-name);
+  font-weight: var(--fw-bold);
+  line-height: 1.3;
+  margin-bottom: 4px;
+  color: rgb(77,73,73);
+}
 
+/* یک منبع حقیقت برای role/text */
+.expert-card__role,
+.expert-card__text{
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
+  color: var(--et-muted);
+  line-height: 1.5;
+  margin: 0 0 10px 0;
 
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 
+  /* Fallbacks for clamping */
+  text-overflow: ellipsis;
+}
+.expert-card__role{
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+}
+.expert-card__text{
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+.expert-card__text p{ margin:0; }
+.expert-card__text p + p{ margin-top:.5rem; }
 
+.expert-card__link{
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-bold);
+  text-decoration: underline;
+  color: #1b1b1b;
+  line-height: 1.4;
+  padding-top: 8px;
+}
+
+/* Desktop wide presets — فقط یک‌بار تعریف شود */
+@media (min-width:1200px){
+  .experts-grid{
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .expert-card{
+    box-shadow: 0 3px 6px rgba(0,0,0,.06);
+  }
+  .expert-card__body{ padding: 22px 20px; }
+}
+
+/* Ultra-wide */
+@media (min-width:1600px){
+  .experts-grid{ gap: 40px; }
+}
+
+/* Mobile swipe slider */
+@media (max-width:749px){
+  .experts-grid{
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+    padding-inline: 16px;
+    scroll-padding-inline: 16px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+  .experts-grid::-webkit-scrollbar{ display: none; }
+
+  .experts-grid .expert-card{
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: top;
+    width: 82%;
+    min-width: 82%;
+    margin: 0 8px;
+    white-space: normal;
+    scroll-snap-align: center;
+    height: auto;
+  }
+  .expert-team.center-snap .experts-grid{
+    padding-inline: calc((100% - 82%) / 2);
+    scroll-padding-inline: calc((100% - 82%) / 2);
+  }
+}
 
 /* Footer CTA */
 .experts-footer-link{ text-align:center; margin-top:28px; }
@@ -65,168 +223,7 @@
   text-decoration:none; font-weight:700; font-size:15px; color:#1c1c1c;
 }
 
-/* Mobile swipe slider */
-@media (max-width:749px){
-  .experts-grid{
-    display:block; overflow-x:auto; -webkit-overflow-scrolling:touch;
-    scroll-snap-type:x mandatory; white-space:nowrap; padding-inline:16px;
-    -ms-overflow-style:none; scrollbar-width:none; overscroll-behavior-x:contain;
-  }
-  .experts-grid::-webkit-scrollbar{ display:none; }
-
-  .experts-grid .expert-card{
-    display:inline-flex; flex-direction:column; vertical-align:top;
-    width:82%; min-width:82%; margin:0 8px; white-space:normal; scroll-snap-align:center; height:auto;
-  }
-  .expert-team.center-snap .experts-grid{ padding-inline:calc((100% - 82%) / 2); }
-  .experts-grid .expert-card:first-child{ margin-left:0; }
-  .experts-grid .expert-card:last-child{ margin-right:0; }
-}
-/* === Overrides for Role & Beschreibung === */
-
-/* 1) gap رو صفر می‌کنیم تا فاصله‌ی بین آیتم‌ها رو خودمون با margin کنترل کنیم */
-.expert-card__body { 
-  gap: 0; 
-}
-
-/* 2) فونت‌سایز و وزن یکسان برای Role و Beschreibung */
-.expert-card__role,
-.expert-card__text {
-  font-size: 14px;     /* هر دو 14px */
-  font-weight: 400;    /* یکسان شدن وزن؛ خواستی می‌تونی 300 هم بذاری برای هر دو */
-  /* font-family هم که قبلاً یکیه، نیازی به تکرار نیست */
-}
-
-/* 3) فاصله دقیق بین Role و Beschreibung */
-.expert-card__role { 
-  margin-bottom: 4px;  /* فاصله‌ی عمودی با متن توضیح = 4px */
-}
-
-/* (اختیاری) فاصله پایین توضیحات اگر نیاز داری */
-.expert-card__text { 
-  margin-bottom: 4px;  /* می‌تونی تغییرش بدی یا حذف کنی */
-}
-
-/* ==== 4 Expert Cards – Full Width Layout ==== */
-
-@media (min-width: 1200px) {
-  /* سکشن کامل‌تر و پهن‌تر بشه */
-  #expert-team {
-    max-width: 1600px;  /* بسته به صفحه‌نمایش می‌تونی تا 1700 هم ببری */
-    margin: 0 auto;
-    padding: 80px 40px; /* فاصله داخلی متعادل */
-  }
-
-  /* شبکه‌ی کارت‌ها */
-  .experts-grid {
-    grid-template-columns: repeat(4, 1fr); /* ۴ کارت در هر ردیف */
-    gap: 32px; /* فاصله متعادل بین کارت‌ها */
-  }
-
-  /* خود کارت‌ها پهن‌تر و خواناتر بشن */
-  .expert-card {
-    max-width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06);
-    transition: transform 0.25s ease;
-  }
-
-  .expert-card__body {
-    padding: 22px 20px;
-  }
-
-  .expert-card__name {
-    font-size: 1.15rem;
-    line-height: 1.3;
-  }
-
-  .expert-card__role,
-  .expert-card__text,
-  .expert-card__link {
-    font-size: 1rem;
-    line-height: 1.55;
-  }
-}
-
-/* برای مانیتورهای خیلی عریض */
-@media (min-width: 1600px) {
-  #expert-team {
-    max-width: 1800px;
-    padding-inline: 60px;
-  }
-  .experts-grid {
-    gap: 40px;
-  }
-}
-/* فقط داخل سکشن Expert-Team، ظرف page-width رو پهن‌تر کن */
-#expert-team .expert-team__inner.page-width{
-  max-width: 1600px !important;   /* یا 1800px اگر مانیتور خیلی عریضه */
-  padding-left: 32px;
-  padding-right: 32px;
-  margin-inline: auto;
-}
-
-/* اطمینان از 4 ستون روی دسکتاپ */
-@media (min-width: 1200px){
-  #expert-team .experts-grid{
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 32px;
-  }
-}
-
-/* برای مانیتورهای خیلی عریض */
-@media (min-width: 1600px){
-  #expert-team .expert-team__inner.page-width{ max-width: 1800px !important; }
-  #expert-team .experts-grid{ gap: 40px; }
-}
-.expert-card__name {
-  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.3;
-  margin-bottom: 4px;
-  color:rgb(77, 73, 73);
-}
-.expert-card__role {
-  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  color: #555;
-  line-height: 1.4;
-  margin-bottom: 10px;
-}
-
-.expert-card__role,
-.expert-card__text {
-  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  color: #555;
-  line-height: 1.4;
-  margin-top: 0;
-  margin-bottom: 10px;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.expert-card__role {
-  -webkit-line-clamp: 1; /* فقط یک خط */
-}
-
-.expert-card__text {
-  -webkit-line-clamp: 3; /* حداکثر سه خط */
-}
-
-.expert-card__text p{ margin:0; }
-.expert-card__text p + p{ margin-top:.5rem; }
-
-.expert-card__link {
-  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  text-decoration: underline;
-  color: #1b1b1b;
-  line-height: 1.4;
-  padding-top: 8px;
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .expert-card{ transition: none !important; }
 }
