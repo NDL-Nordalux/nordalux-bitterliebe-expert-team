@@ -3630,7 +3630,7 @@ details-disclosure > details {
    ============================================ */
 @media (min-width: 1200px) {
   .page-width {
-    max-width: 1560px;   /* عرض بیشتر برای Expert Team و بقیه‌ی صفحات */
+    max-width: 1400px;   /* عرض بیشتر برای Expert Team و بقیه‌ی صفحات */
     padding-inline: 16px; /* فاصله از کناره‌ها کمتر */
   }
 }
