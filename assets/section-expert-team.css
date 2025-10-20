@@ -1,20 +1,19 @@
 /* ===============================
-   EXPERT TEAM SECTION — CLEAN
+   EXPERT TEAM SECTION — CLEAN & FINAL
    =============================== */
 
 /* ─────────────────────────────────────────────
-   Expert Team — Cleaned & Consolidated Styles
+   Variables & Base
    ───────────────────────────────────────────── */
-#expert-team{
+#expert-team {
   --et-bg: #fff;
   --et-text: #1c1c1c;
   --et-muted: #555;
-  --et-muted-strong: #444;
   --et-border: rgba(0,0,0,.06);
   --et-card-bg: #fff;
 
   --space-section-y: 40px;
-  --space-card-gap: 0px;
+  --space-card-gap: 22px;
 
   --fs-body: var(--font-body-scale, 1rem);
   --fs-badge: .8rem;
@@ -34,13 +33,10 @@
   padding: var(--space-section-y) 0;
 }
 
-/* spacing desktop */
-@media (min-width:750px){
-  #expert-team{ padding: 80px 0; }
-}
-
-/* Container (single source of truth) */
-#expert-team .expert-team__inner.page-width{
+/* ─────────────────────────────────────────────
+   Container & Headings
+   ───────────────────────────────────────────── */
+#expert-team .expert-team__inner.page-width {
   max-width: 1600px;
   padding-inline: 32px;
   margin-inline: auto;
@@ -49,28 +45,29 @@
   #expert-team .expert-team__inner.page-width{ max-width: 1800px; }
 }
 
-/* Headings */
-.expert-team__badge{
+.expert-team__badge {
   text-transform: uppercase;
   letter-spacing: .08em;
   font-size: var(--fs-badge);
   opacity: .7;
   margin: 0 0 .4rem;
 }
-.expert-team__title{
+.expert-team__title {
   margin: 0 0 .6rem;
   line-height: 1.2;
   font-size: clamp(var(--fs-title-min), 2.4vw, var(--fs-title-max));
   font-weight: var(--fw-bold);
 }
-.expert-team__intro{
+.expert-team__intro {
   margin: 0 0 1.6rem;
   color: #333;
   opacity: .95;
 }
 
-/* Grid */
-.experts-grid{
+/* ─────────────────────────────────────────────
+   Grid System
+   ───────────────────────────────────────────── */
+.experts-grid {
   display: grid;
   gap: var(--space-card-gap);
   grid-template-columns: repeat(var(--cols-d,4), minmax(0,1fr));
@@ -80,8 +77,10 @@
   .experts-grid{ grid-template-columns: repeat(var(--cols-t,2), minmax(0,1fr)); }
 }
 
-/* Cards */
-.expert-card{
+/* ─────────────────────────────────────────────
+   Card Structure
+   ───────────────────────────────────────────── */
+.expert-card {
   background: var(--et-card-bg);
   border: 1px solid var(--et-border);
   border-radius: 12px;
@@ -93,230 +92,38 @@
   height: 100%;
   transition: transform .25s ease, box-shadow .25s ease;
 }
-/* Hover intentionally mild */
-.expert-card:hover{
+.expert-card:hover {
   transform: none;
   box-shadow: 0 1px 2px rgba(0,0,0,.04);
 }
 
-/* Media */
-.expert-card__media{
+/* ─────────────────────────────────────────────
+   Media / Image
+   ───────────────────────────────────────────── */
+.expert-card__media {
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
   background: #f6f6f6;
 }
-.expert-card__media img{
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-}
-
-/* Body */
-.expert-card__body{
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  gap: 0; /* کنترل فاصله‌ها با margin های عناصر داخلی */
-}
-
-/* Typography */
-.expert-card__name{
-  font-size: var(--fs-name);
-  font-weight: var(--fw-bold);
-  line-height: 1.3;
-  margin-bottom: 4px;
-  color: rgb(77,73,73);
-}
-
-/* یک منبع حقیقت برای role/text */
-.expert-card__role,
-.expert-card__text{
-  font-size: var(--fs-meta);
-  font-weight: var(--fw-medium);
-  color: var(--et-muted);
-  line-height: 1.5;
-  margin: 0 0 10px 0;
-
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-
-  /* Fallbacks for clamping */
-  text-overflow: ellipsis;
-}
-.expert-card__role{
-  -webkit-line-clamp: 1;
-  line-clamp: 1;
-}
-.expert-card__text{
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-}
-.expert-card__text p{ margin:0; }
-.expert-card__text p + p{ margin-top:.5rem; }
-
-.expert-card__link{
-  font-size: var(--fs-meta);
-  font-weight: var(--fw-bold);
-  text-decoration: underline;
-  color: #1b1b1b;
-  line-height: 1.4;
-  padding-top: 8px;
-}
-
-/* Desktop wide presets — فقط یک‌بار تعریف شود */
-@media (min-width:1200px){
-  .experts-grid{
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
-  }
-  .expert-card{
-    box-shadow: 0 3px 6px rgba(0,0,0,.06);
-  }
-  .expert-card__body{ padding: 22px 20px; }
-}
-
-/* Ultra-wide */
-@media (min-width:1600px){
-  .experts-grid{ gap: 40px; }
-}
-
-/* Mobile swipe slider */
-@media (max-width:749px){
-  .experts-grid{
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    white-space: nowrap;
-    padding-inline: 16px;
-    scroll-padding-inline: 16px;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    overscroll-behavior-x: contain;
-  }
-  .experts-grid::-webkit-scrollbar{ display: none; }
-
-  .experts-grid .expert-card{
-    display: inline-flex;
-    flex-direction: column;
-    vertical-align: top;
-    width: 82%;
-    min-width: 82%;
-    margin: 0 8px;
-    white-space: normal;
-    scroll-snap-align: center;
-    height: auto;
-  }
-  .expert-team.center-snap .experts-grid{
-    padding-inline: calc((100% - 82%) / 2);
-    scroll-padding-inline: calc((100% - 82%) / 2);
-  }
-}
-
-/* Footer CTA */
-.experts-footer-link{ text-align:center; margin-top:28px; }
-.experts-footer-link__btn{
-  display:inline-block; padding:10px 18px;
-  border:1px solid #1c1c1c; border-radius:8px;
-  text-decoration:none; font-weight:700; font-size:15px; color:#1c1c1c;
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .expert-card{ transition: none !important; }
-}
-
-
-/* spacing desktop */
-@media (min-width:750px){
-  #expert-team{ padding: 80px 0; }
-}
-
-/* Container (single source of truth) */
-#expert-team .expert-team__inner.page-width{
-  max-width: 1600px;
-  padding-inline: 32px;
-  margin-inline: auto;
-}
-@media (min-width:1600px){
-  #expert-team .expert-team__inner.page-width{ max-width: 1800px; }
-}
-
-/* Headings */
-.expert-team__badge{
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  font-size: var(--fs-badge);
-  opacity: .7;
-  margin: 0 0 .4rem;
-}
-.expert-team__title{
-  margin: 0 0 .6rem;
-  line-height: 1.2;
-  font-size: clamp(var(--fs-title-min), 2.4vw, var(--fs-title-max));
-  font-weight: var(--fw-bold);
-}
-.expert-team__intro{
-  margin: 0 0 1.6rem;
-  color: #333;
-  opacity: .95;
-}
-
-/* Grid */
-.experts-grid{
-  display: grid;
-  gap: var(--space-card-gap);
-  grid-template-columns: repeat(var(--cols-d,4), minmax(0,1fr));
-  align-items: stretch;
-}
-@media (max-width:1199px){
-  .experts-grid{ grid-template-columns: repeat(var(--cols-t,2), minmax(0,1fr)); }
-}
-
-/* Cards */
-.expert-card{
-  background: var(--et-card-bg);
-  border: 1px solid var(--et-border);
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+.expert-card__media img {
+  width: 100%;
   height: 100%;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-/* Hover intentionally mild */
-.expert-card:hover{
-  transform: none;
-  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  object-fit: cover;
+  display: block;
 }
 
-/* Media */
-.expert-card__media{
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: #f6f6f6;
-}
-.expert-card__media img{
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-}
-
-/* Body */
-.expert-card__body{
+/* ─────────────────────────────────────────────
+   Body & Typography
+   ───────────────────────────────────────────── */
+.expert-card__body {
   padding: 20px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  gap: 0; /* کنترل فاصله‌ها با margin های عناصر داخلی */
 }
 
-/* Typography */
-.expert-card__name{
+.expert-card__name {
   font-size: var(--fs-name);
   font-weight: var(--fw-bold);
   line-height: 1.3;
@@ -324,34 +131,30 @@
   color: rgb(77,73,73);
 }
 
-/* یک منبع حقیقت برای role/text */
 .expert-card__role,
-.expert-card__text{
+.expert-card__text {
   font-size: var(--fs-meta);
   font-weight: var(--fw-medium);
   color: var(--et-muted);
   line-height: 1.5;
   margin: 0 0 10px 0;
-
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
-
-  /* Fallbacks for clamping */
   text-overflow: ellipsis;
 }
-.expert-card__role{
+.expert-card__role {
   -webkit-line-clamp: 1;
   line-clamp: 1;
 }
-.expert-card__text{
+.expert-card__text {
   -webkit-line-clamp: 3;
   line-clamp: 3;
 }
-.expert-card__text p{ margin:0; }
-.expert-card__text p + p{ margin-top:.5rem; }
+.expert-card__text p { margin: 0; }
+.expert-card__text p + p { margin-top: .5rem; }
 
-.expert-card__link{
+.expert-card__link {
   font-size: var(--fs-meta);
   font-weight: var(--fw-bold);
   text-decoration: underline;
@@ -360,10 +163,12 @@
   padding-top: 8px;
 }
 
-/* Desktop wide presets — فقط یک‌بار تعریف شود */
+/* ─────────────────────────────────────────────
+   Desktop Layouts
+   ───────────────────────────────────────────── */
 @media (min-width:1200px){
   .experts-grid{
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(var(--cols-d,4), 1fr);
     gap: 32px;
   }
   .expert-card{
@@ -371,15 +176,21 @@
   }
   .expert-card__body{ padding: 22px 20px; }
 }
-
-/* Ultra-wide */
 @media (min-width:1600px){
   .experts-grid{ gap: 40px; }
 }
 
-/* Mobile swipe slider */
-@media (max-width:749px){
-  .experts-grid{
+/* ─────────────────────────────────────────────
+   Mobile Layout (Nature Heart Look)
+   ───────────────────────────────────────────── */
+@media (max-width: 749px) {
+  #expert-team {
+    --card-w: 88%;
+    --fs-name: 18px;
+    --fs-meta: 15px;
+  }
+
+  #expert-team .experts-grid {
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -391,36 +202,95 @@
     scrollbar-width: none;
     overscroll-behavior-x: contain;
   }
-  .experts-grid::-webkit-scrollbar{ display: none; }
+  #expert-team .experts-grid::-webkit-scrollbar{ display: none; }
 
-  .experts-grid .expert-card{
+  .expert-team.center-snap #expert-team .experts-grid,
+  #expert-team.expert-team.center-snap .experts-grid {
+    padding-inline: calc((100% - var(--card-w)) / 2);
+    scroll-padding-inline: calc((100% - var(--card-w)) / 2);
+  }
+
+  #expert-team .expert-card {
     display: inline-flex;
     flex-direction: column;
     vertical-align: top;
-    width: 82%;
-    min-width: 82%;
-    margin: 0 8px;
+    width: var(--card-w) !important;
+    min-width: var(--card-w) !important;
+    margin: 0 10px;
     white-space: normal;
     scroll-snap-align: center;
     height: auto;
+
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.06);
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.07);
   }
-  .expert-team.center-snap .experts-grid{
-    padding-inline: calc((100% - 82%) / 2);
-    scroll-padding-inline: calc((100% - 82%) / 2);
+
+  #expert-team .expert-card__media {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #f6f6f6;
+  }
+
+  #expert-team .expert-card__body {
+    padding: 16px 18px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  #expert-team .expert-card__name {
+    font-size: var(--fs-name) !important;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 2px;
+    color: rgb(77,73,73);
+  }
+
+  #expert-team .expert-card__role,
+  #expert-team .expert-card__text,
+  #expert-team .expert-card__link {
+    font-size: var(--fs-meta) !important;
+  }
+
+  #expert-team .expert-card__role {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
+
+  #expert-team .expert-card__text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  #expert-team .expert-card__link {
+    text-decoration: underline;
+    font-weight: 700;
+    padding-top: 6px;
   }
 }
 
-/* Footer CTA */
-.experts-footer-link{ text-align:center; margin-top:28px; }
-.experts-footer-link__btn{
-  display:inline-block; padding:10px 18px;
-  border:1px solid #1c1c1c; border-radius:8px;
-  text-decoration:none; font-weight:700; font-size:15px; color:#1c1c1c;
+/* ─────────────────────────────────────────────
+   Footer CTA & Motion
+   ───────────────────────────────────────────── */
+.experts-footer-link { text-align:center; margin-top:28px; }
+.experts-footer-link__btn {
+  display:inline-block;
+  padding:10px 18px;
+  border:1px solid #1c1c1c;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:15px;
+  color:#1c1c1c;
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce){
   .expert-card{ transition: none !important; }
 }
-/* Force white background for Expert Team (final override) */
-
