@@ -196,14 +196,26 @@
   margin-bottom: 10px;
 }
 
+.expert-card__role,
 .expert-card__text {
   font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 500;
   color: #555;
   line-height: 1.4;
+  margin-top: 0;
   margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
+.expert-card__role {
+  -webkit-line-clamp: 1; /* فقط یک خط */
+}
+
+.expert-card__text {
+  -webkit-line-clamp: 3; /* حداکثر سه خط */
 }
 
 .expert-card__text p{ margin:0; }
