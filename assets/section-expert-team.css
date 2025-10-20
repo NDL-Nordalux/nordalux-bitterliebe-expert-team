@@ -54,40 +54,7 @@
    =============================== */
 
 
-.expert-card__role {
-  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  color: #555;
-  line-height: 1.4;
-  margin-bottom: 10px;
-}
 
-.expert-card__text {
-  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  color: #333;
-  line-height: 1.55;
-  margin-bottom: 4px;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
-}
-
-.expert-card__text p{ margin:0; }
-.expert-card__text p + p{ margin-top:.5rem; }
-
-.expert-card__link {
-  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  text-decoration: underline;
-  color: #1b1b1b;
-  line-height: 1.4;
-  padding-top: 8px;
-}
 
 
 /* Footer CTA */
@@ -219,4 +186,38 @@
   line-height: 1.3;
   margin-bottom: 4px;
   color:rgb(77, 73, 73);
+}
+.expert-card__role {
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.expert-card__text {
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+  line-height: 1.55;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.expert-card__text p{ margin:0; }
+.expert-card__text p + p{ margin-top:.5rem; }
+
+.expert-card__link {
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: underline;
+  color: #1b1b1b;
+  line-height: 1.4;
+  padding-top: 8px;
 }
